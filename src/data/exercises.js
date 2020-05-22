@@ -1,12 +1,4 @@
-export type Exercise = {
-    image: string;
-    description: string;
-    title: string;
-    muscles: ("abs" | "hamstrings" | "glutes" | "quads" | "balance" | "shoulder" | "stretch" | "back" | "chest" | "triceps" | "biceps")[];
-    alternate: boolean;
-};
-
-const EXERCISES: Exercise[] = [
+const EXERCISES = [
     {
         image: "balance mini squats.mp4",
         description: "During this movement, drive the non-balancing leg behind and to the right, return to starting position. Repeat going behind and to the left. The intent is to reach as far as possible in both directions by reaching outside of your base of support while still able to maintain balance.",
