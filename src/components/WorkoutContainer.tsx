@@ -3,22 +3,9 @@ import {
     Box, Flex, Heading, Button, Text,
 } from "rebass";
 import { Slider, Label } from "@rebass/forms";
-import { ThemeProvider } from "emotion-theming";
 
 const WorkoutContainer: React.FC = () => (
-    <ThemeProvider
-        theme={{
-            colors: {
-                background: "black",
-                primary: "tomato",
-            },
-            space: [0, 6, 12, 24, 48],
-            fontSizes: [14, 16, 18, 20, 24],
-            radii: {
-                default: 12,
-            },
-        }}
-    >
+    <Box>
         <Flex
             alignItems="Center"
         >
@@ -90,7 +77,7 @@ const WorkoutContainer: React.FC = () => (
                 </Box>
             </Flex>
         </Box>
-    </ThemeProvider>
+    </Box>
 );
 
 export default WorkoutContainer;
