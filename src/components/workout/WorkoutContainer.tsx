@@ -1,16 +1,22 @@
+/* eslint-disable no-await-in-loop */
 import React from "react";
 import {
     Box, Button, Flex, Text,
 } from "rebass";
 import { Slider, Label } from "@rebass/forms";
 import ExerciseInfo from "./ExerciseInfo";
+// eslint-disable-next-line
+import { Exercise } from "../../data/exercises";
 
 type WorkoutContainerProps = {
+    workout: Exercise[]
 }
 
 type WorkoutContainerState = {
-    currentActivity: "set" | "rest" | "none";
+    currentActivity: "set" | "rest" | "none" | "countdown";
+    currentIndex: number;
     currentTimer: number;
+    defaultSets: number;
     defaultSetTime: number;
     defaultRestTime: number;
     paused: boolean;
@@ -20,11 +26,32 @@ export default class WorkoutContainer extends
     React.Component<WorkoutContainerProps, WorkoutContainerState> {
     private interval: any;
 
+    private sets: number;
+
+    private activityTextMap: any = {
+        countdown: {
+            text: "Ready in:",
+            color: "green",
+        },
+        set: {
+            text: "Time Remaining:",
+        },
+        rest: {
+            text: "Resting:",
+        },
+        none: {
+            text: "",
+            color: "black",
+        },
+    }
+
     constructor(props: WorkoutContainerProps) {
         super(props);
         this.state = {
             currentActivity: "none",
+            currentIndex: 0,
             currentTimer: 0,
+            defaultSets: 3,
             defaultSetTime: 60,
             defaultRestTime: 60,
             paused: false,
@@ -65,17 +92,34 @@ export default class WorkoutContainer extends
     }
 
     startTimer = async () => {
-        const { defaultRestTime, defaultSetTime } = this.state;
-        this.setState({
-            currentActivity: "set",
-        });
-        await this.countDownTimer(defaultSetTime);
-        this.setState({
-            currentActivity: "rest",
-        });
-        await this.countDownTimer(defaultRestTime);
+        const {
+            currentIndex, defaultSets, defaultRestTime, defaultSetTime,
+        } = this.state;
+        this.sets = defaultSets;
+        while (this.sets > 0) {
+            this.setState({
+                currentActivity: "countdown",
+            });
+            await this.countDownTimer(3);
+            this.setState({
+                currentActivity: "set",
+            });
+            await this.countDownTimer(defaultSetTime);
+            this.sets--;
+            this.setState({
+                currentActivity: "rest",
+            });
+            await this.countDownTimer(defaultRestTime);
+        }
         this.setState({
             currentActivity: "none",
+            currentIndex: currentIndex + 1,
+        });
+    }
+
+    setDefaultSets = (event: React.ChangeEvent<HTMLInputElement>) => {
+        this.setState({
+            defaultSets: parseInt(event.target.value, 10),
         });
     }
 
@@ -93,15 +137,44 @@ export default class WorkoutContainer extends
 
     render(): JSX.Element {
         const {
-            currentActivity, currentTimer, defaultSetTime, defaultRestTime, paused,
+            currentActivity,
+            currentIndex,
+            currentTimer,
+            defaultSets,
+            defaultSetTime,
+            defaultRestTime,
+            paused,
         } = this.state;
+        const { workout } = this.props;
+        const { title, description } = workout[currentIndex];
         return (
-            <Box>
-                <ExerciseInfo title="Test title" description="Test description" />
-                <Flex justifyContent="space-between">
-                    <Box width={1 / 6}>
+            <Box px="5vw">
+                <ExerciseInfo title={title} description={description} videoId="AqzDJHxynwo" />
+                <Flex justifyContent="flex-start" maxWidth="500px">
+                    <Text fontWeight="bold" width={2 / 5} color={this.activityTextMap[currentActivity].color}>
+                        {currentTimer ? `${this.activityTextMap[currentActivity].text} ${currentTimer}` : ""}
+                        &nbsp;
+                    </Text>
+                    <Text fontWeight="bold" width={2 / 5}>
+                        {currentActivity !== "none" ? `Sets remaining: ${this.sets}` : ""}
+                        &nbsp;
+                    </Text>
+                </Flex>
+                <Flex justifyContent="space-between" height="20vh">
+                    <Box width={2 / 5}>
                         <Label>
-                            Default Set:
+                            Default Sets (applies next exercise):
+                            {` ${defaultSets}`}
+                        </Label>
+                        <Slider
+                            name="Set Length"
+                            defaultValue={defaultSets}
+                            onChange={this.setDefaultSets}
+                            min="1"
+                            max="12"
+                        />
+                        <Label>
+                            Default Set Time:
                             {` ${defaultSetTime}s`}
                         </Label>
                         <Slider
@@ -123,34 +196,17 @@ export default class WorkoutContainer extends
                             max="120"
                         />
                     </Box>
-                    <Box
-                        sx={{
-                            maxWidth: "60vw",
-                        }}
-                        width={3 / 6}
-                    >
-                        <iframe
-                            title="Workouts"
-                            width="100%"
-                            height="100%"
-                            src="https://www.youtube.com/embed/AqzDJHxynwo?controls=0&showinfo=0&rel=0&loop=1&autoplay=1&mute=1&origin=https://integrum.nickmiller.dev"
-                            frameBorder="0"
-                        />
-                    </Box>
                     <Flex
-                        width={1 / 6}
+                        width={2 / 5}
                         justifyContent="space-around"
                         flexDirection="column"
-                        minHeight="200px"
+                        height="150px"
                     >
                         <Button disabled={currentActivity !== "none"} variant="primary" onClick={this.startTimer}>Go!</Button>
                         <Button disabled={!currentTimer} variant="outline" onClick={this.skipPress}>Skip</Button>
                         <Button disabled={!(paused || currentTimer)} variant="outline" onClick={this.pausePress}>{paused ? "Resume" : "Pause"}</Button>
                     </Flex>
                 </Flex>
-                <Box>
-                    <Text>{currentTimer ? ` ${currentActivity === "set" ? "Timer: " : "Rest: "}${currentTimer}` : ""}</Text>
-                </Box>
             </Box>
         );
     }

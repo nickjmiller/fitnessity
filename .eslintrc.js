@@ -29,6 +29,7 @@ module.exports = {
         "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": "off",
+        "react/jsx-one-expression-per-line": "off",
         "react/prop-types": "off",
         "no-plusplus": "off",
         semi: ["error", "always"],

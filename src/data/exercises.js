@@ -4,7 +4,8 @@ const EXERCISES = [
         description: "During this movement, drive the non-balancing leg behind and to the right, return to starting position. Repeat going behind and to the left. The intent is to reach as far as possible in both directions by reaching outside of your base of support while still able to maintain balance.",
         title: "Balance mini squats",
         muscles: ["quads", "glutes", "balance"],
-        alternate: false,
+        alternate: true,
+        equipment: [],
     },
     {
         image: "box squats.mp4",
@@ -12,6 +13,7 @@ const EXERCISES = [
         title: "Box squats",
         muscles: ["quads", "glutes"],
         alternate: false,
+        equipment: ["chair"],
     },
     {
         image: "forward lung.mp4",
@@ -19,6 +21,7 @@ const EXERCISES = [
         title: "Forward lunge",
         muscles: ["quads", "glutes"],
         alternate: false,
+        equipment: [],
     },
     {
         image: "goblet squat.mp4",
@@ -26,6 +29,7 @@ const EXERCISES = [
         title: "Goblet squat",
         muscles: ["quads", "glutes"],
         alternate: false,
+        equipment: ["weight"],
     },
     {
         image: "Hip hikes.mp4",
@@ -33,13 +37,15 @@ const EXERCISES = [
         title: "Hip hikes",
         muscles: ["quads", "glutes"],
         alternate: true,
+        equipment: ["block"],
     },
     {
         image: "lateral squat.mp4",
-        description: "While facing forward, take a large step to side. Bend knee as far as balance/strength will allow and push off foot to return to starting position. repeat for opposite side.",
+        description: "While facing forward, take a large step to side. Bend knee as far as balance/strength will allow and push off foot to return to starting position.",
         title: "Lateral squats",
         muscles: ["glutes"],
-        alternate: false,
+        alternate: true,
+        equipment: [],
     },
     {
         image: "olympic squat.mp4",
@@ -47,6 +53,7 @@ const EXERCISES = [
         title: "Olympic squats",
         muscles: ["glutes"],
         alternate: false,
+        equipment: ["bar"],
     },
     {
         image: "single leg SLDL.mp4",
@@ -54,6 +61,7 @@ const EXERCISES = [
         title: "Single leg romanian deadlift (SLRDL) or single leg deadlift (SLDL)",
         muscles: ["balance", "hamstrings", "glutes"],
         alternate: true,
+        equipment: ["weight"],
     },
     {
         image: "SLDL.mp4",
@@ -61,6 +69,7 @@ const EXERCISES = [
         title: "Straight legged deadlift (SLDL) or Romanian deadlift",
         muscles: ["hamstrings", "glutes"],
         alternate: false,
+        equipment: ["weight"],
     },
     {
         image: "split squat.mp4",
@@ -68,6 +77,7 @@ const EXERCISES = [
         title: "Split squat or bulgarian split squat",
         muscles: ["glutes"],
         alternate: true,
+        equipment: ["chair"],
     },
     {
         image: "squaTS.mp4",
@@ -75,6 +85,7 @@ const EXERCISES = [
         title: "Squats",
         muscles: ["glutes", "quads"],
         alternate: false,
+        equipment: [],
     },
     {
         image: "straight bar squat.mp4",
@@ -82,6 +93,7 @@ const EXERCISES = [
         title: "Straight bar squats",
         muscles: ["glutes", "quads"],
         alternate: false,
+        equipment: ["bar"],
     },
     {
         image: "ab roller.mp4",
@@ -89,6 +101,7 @@ const EXERCISES = [
         title: "Ab roller",
         muscles: ["abs"],
         alternate: false,
+        equipment: ["ab roller"],
     },
     {
         image: "contralateral extnesion.mp4",
@@ -96,6 +109,7 @@ const EXERCISES = [
         title: "Supine contralateral extensions",
         muscles: ["abs"],
         alternate: false,
+        equipment: [],
     },
     {
         image: "leg raises.mp4",
@@ -103,6 +117,7 @@ const EXERCISES = [
         title: "Leg raises",
         muscles: ["abs"],
         alternate: false,
+        equipment: [],
     },
     {
         image: "planks.mp4",
@@ -110,20 +125,23 @@ const EXERCISES = [
         title: "Planks",
         muscles: ["abs"],
         alternate: false,
+        equipment: [],
     },
     {
         image: "quadreped contralateral extensions.mp4",
         description: "Get onto hands and knees. Drive hands into ground pushing away through shoulders. maintain this position throughout movement. Lift opposite hand and leg, extending both at the same time. Maintain neutral spine through movement, If low back arches, only extend as far as body will allow in order to maintain neutral spine.",
         title: "Quadruped contralateral extensions",
         muscles: ["abs", "balance"],
-        alternate: false,
+        alternate: true,
+        equipment: [],
     },
     {
         image: "shoulder stability roll.mp4",
         description: "While laying on your back hold light weight straight up towards ceiling. Lift the same side knee into the hair holding at a 90 degree position. Roll towards side that does not have hand in the air. Roll while maintain shoulders and hips in same position. While rolling. Keep raised hand in same position.",
         title: "Shoulder stability roll",
         muscles: ["shoulder", "stretch"],
-        alternate: false,
+        alternate: true,
+        equipment: [],
     },
     {
         image: "supermans.mp4",
@@ -131,6 +149,7 @@ const EXERCISES = [
         title: "Supermans",
         muscles: ["back"],
         alternate: false,
+        equipment: [],
     },
     {
         image: "prone contralateral extensions.mp4",
@@ -138,6 +157,7 @@ const EXERCISES = [
         title: "Prone Contralateral Extensions",
         muscles: ["back"],
         alternate: false,
+        equipment: [],
     },
     {
         image: "y extensions.mp4",
@@ -145,13 +165,15 @@ const EXERCISES = [
         title: "Y extensions",
         muscles: ["back"],
         alternate: false,
+        equipment: [],
     },
     {
-        image: "body weight shoulder press.mp4",
+        image: "body weight dips.mp4",
         description: "With a sturdy surface (chair) pull body away to allow room to lower hips towards floor by bending elbows. Keep elbows in throughout movement. only go as deep as shoulders will allow as movement places stress on the front aspect of shoulders.",
         title: "Body weight dips",
         muscles: ["chest", "triceps"],
         alternate: false,
+        equipment: ["chair"],
     },
     {
         image: "Dumbbell curls.mp4",
@@ -159,6 +181,7 @@ const EXERCISES = [
         title: "Dumbbell curls",
         muscles: ["biceps"],
         alternate: false,
+        equipment: ["weight"],
     },
     {
         image: "Dynamic pushups.mp4",
@@ -166,6 +189,7 @@ const EXERCISES = [
         title: "Dynamic push ups",
         muscles: ["chest"],
         alternate: false,
+        equipment: [],
     },
     {
         image: "front delts.mp4",
@@ -173,6 +197,7 @@ const EXERCISES = [
         title: "Front delt raise",
         muscles: ["shoulder"],
         alternate: false,
+        equipment: ["weight"],
     },
     {
         image: "Hindu push up.mp4",
@@ -180,6 +205,7 @@ const EXERCISES = [
         title: "Hindu pushups",
         muscles: ["chest", "shoulder"],
         alternate: false,
+        equipment: [],
     },
     {
         image: "inclinded pusheps.mp4",
@@ -187,6 +213,7 @@ const EXERCISES = [
         title: "Incline pushups",
         muscles: ["chest"],
         alternate: false,
+        equipment: ["chair"],
     },
     {
         image: "lat raises.mp4",
@@ -194,6 +221,7 @@ const EXERCISES = [
         title: "Lateral raises",
         muscles: ["shoulder"],
         alternate: false,
+        equipment: ["weight"],
     },
     {
         image: "Push ups.mp4",
@@ -201,13 +229,15 @@ const EXERCISES = [
         title: "Pushups",
         muscles: ["chest"],
         alternate: false,
+        equipment: [],
     },
     {
-        image: "Shoulder press DB.mp4",
+        image: "body weight shoulder press.mp4",
         description: "Place feet on object approximately 18 inches off ground (standard chair height). From here, lift hips as high into the air as possible provided arms can support position. If position is difficult maintain position for duration of exercise, if it is easy lower head towards ground WITHOUT touching and raise back to start position.",
         title: "Body weight shoulder press",
         muscles: ["shoulder"],
         alternate: false,
+        equipment: ["chair"],
     },
     {
         image: "single leg shoulder press.mp4",
@@ -215,13 +245,15 @@ const EXERCISES = [
         title: "Single leg shoulder press",
         muscles: ["shoulder", "glutes", "balance"],
         alternate: true,
+        equipment: ["weight"],
     },
     {
         image: "triceps extension.mp4",
         description: "Bend at waist until trunk is parallel with floor. If needed, place opposite hand on addition surface for stabilization. While keeping the working arms elbow stabilized at side, extend weight against gravity.",
         title: "Tricep extension",
         muscles: ["triceps"],
-        alternate: false,
+        alternate: true,
+        equipment: ["weight"],
     },
     {
         image: "uneven push up.mp4",
@@ -229,6 +261,7 @@ const EXERCISES = [
         title: "Uneven push up",
         muscles: ["triceps"],
         alternate: false,
+        equipment: ["block"],
     },
 ];
 

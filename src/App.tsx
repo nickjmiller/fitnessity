@@ -16,9 +16,11 @@ function App() {
             <ThemeProvider theme={theme}>
                 <HeaderNav />
                 <Box sx={{
-                    maxWidth: "80vw",
+                    maxWidth: "1000px",
                     mx: "auto",
                     px: 3,
+                    minHeight: "77vh",
+                    paddingBottom: "2rem",
                 }}
                 >
                     <React.Suspense fallback={<em>Loading...</em>}>
@@ -28,6 +30,13 @@ function App() {
                         </Router>
                     </React.Suspense>
                 </Box>
+                <footer>
+                    <small>
+                        &copy; Copyright 2020,
+                        <> <a href="https://github.com/nickjmiller">nickjmiller</a></>
+                        . All rights reserved.
+                    </small>
+                </footer>
             </ThemeProvider>
         </Root>
     );

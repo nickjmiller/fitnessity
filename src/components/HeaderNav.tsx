@@ -1,12 +1,14 @@
 /** @jsx jsx */
 import { Link } from "@reach/router";
 import { jsx } from "theme-ui";
+import { Flex } from "rebass";
 
 const HeaderNav: React.FC = () => (
     <header
         sx={{
             display: "grid",
             maxWidth: 768,
+            maxHeight: "25vh",
             mx: "auto",
             px: 3,
             py: 3,
@@ -18,11 +20,10 @@ const HeaderNav: React.FC = () => (
             variant: "styles.header",
         }}
     >
-        <div
+        <Flex
+            alignItems="center"
+            justifyContent="center"
             sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
                 gridColumnStart: [1, 2],
                 gridColumnEnd: [3, 3],
                 order: [0, 1],
@@ -30,8 +31,9 @@ const HeaderNav: React.FC = () => (
         >
             <Link to="/" title="Home">
                 <img
+                    height="60px"
                     alt="UI Logo"
-                    src="https://contrast.now.sh/cff/40f?size=48&fontSize=2&baseline=2&fontWeight=900&radius=32&text=UI"
+                    src="/logo.png"
                 />
                 <span
                     sx={{
@@ -45,7 +47,7 @@ const HeaderNav: React.FC = () => (
                     Home
                 </span>
             </Link>
-        </div>
+        </Flex>
         <div
             sx={{
                 display: "flex",
