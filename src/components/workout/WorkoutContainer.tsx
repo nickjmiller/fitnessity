@@ -149,7 +149,7 @@ export default class WorkoutContainer extends
         const { title, description } = workout[currentIndex];
         return (
             <Box px="5vw">
-                <ExerciseInfo title={title} description={description} videoId="AqzDJHxynwo" />
+                <ExerciseInfo title={title} description={description} videoId={currentIndex % 2 ? "AqzDJHxynwo" : "ynyKcAvvQ1w"} />
                 <Flex justifyContent="flex-start" maxWidth="500px">
                     <Text fontWeight="bold" width={2 / 5} color={this.activityTextMap[currentActivity].color}>
                         {currentTimer ? `${this.activityTextMap[currentActivity].text} ${currentTimer}` : ""}

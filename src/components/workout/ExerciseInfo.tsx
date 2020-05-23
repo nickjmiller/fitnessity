@@ -2,6 +2,7 @@ import React from "react";
 import {
     Box, Heading, Text,
 } from "rebass";
+import YouTube from "react-youtube";
 
 type ExerciseInfoProps = {
     title: string;
@@ -23,24 +24,35 @@ const ExerciseInfo: React.FC<ExerciseInfoProps> = ({ title, description, videoId
         >
             {description}
         </Text>
-        <Box height="45vh" paddingTop="2em">
-            <iframe
-                title="workout"
-                width="100%"
-                height="100%"
-                src={`https://www.youtube.com/embed/${videoId}?controls=0&showinfo=0&rel=0&loop=1&autoplay=1&mute=1&playlist=${videoId}&origin=https://integrum.nickmiller.dev`}
-                frameBorder="0"
+        <Box sx={{
+            height: "45vh",
+            ".video": {
+                height: "100%",
+            },
+        }}
+        >
+            <YouTube
+                videoId={videoId}
+                containerClassName="video"
+                opts={{
+                    height: "100%",
+                    width: "100%",
+                    playerVars: {
+                        autoplay: 1,
+                        modestbranding: 1,
+                        controls: 0,
+                        rel: 0,
+                        playlist: videoId,
+                        loop: 1,
+                        origin: window.location.href,
+                        playsinline: 1,
+                        showinfo: 0,
+                        mute: 1,
+                    },
+                }}
             />
         </Box>
     </Box>
 );
-
-/* <iframe
-    title="Workouts"
-    width="100%"
-    height="100%"
-    frameBorder="0"
-/>
-*/
 
 export default ExerciseInfo;
