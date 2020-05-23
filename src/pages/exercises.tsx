@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
 import { useRouteData } from "react-static";
+import { Box, Heading } from "rebass";
 
 // TODO: Export to shared types
 
@@ -8,10 +9,8 @@ import { useRouteData } from "react-static";
 export default () => {
     const { EXERCISES } = useRouteData();
     return (
-        <div>
-            <h1>Blog.</h1>
-            <br />
-            All Posts:
+        <Box>
+            <Heading>Exercises</Heading>
             <ul>
                 {EXERCISES.map((exercise: any) => (
                     <li key={exercise.title}>
@@ -19,6 +18,6 @@ export default () => {
                     </li>
                 ))}
             </ul>
-        </div>
+        </Box>
     );
 };

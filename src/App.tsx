@@ -1,9 +1,11 @@
 import React from "react";
 import { Root, Routes, addPrefetchExcludes } from "react-static";
-import { Link, Router } from "@reach/router";
-import { tailwind } from "@theme-ui/presets";
+import { Router } from "@reach/router";
 import Dynamic from "containers/Dynamic";
-import { ThemeProvider } from "emotion-theming";
+import { ThemeProvider } from "theme-ui";
+import HeaderNav from "components/HeaderNav";
+import { Box } from "rebass";
+import theme from "./theme";
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 addPrefetchExcludes(["dynamic"]);
@@ -11,21 +13,21 @@ addPrefetchExcludes(["dynamic"]);
 function App() {
     return (
         <Root>
-            <ThemeProvider theme={tailwind}>
-                <nav>
-                    <Link to="/">Home</Link>
-                    <Link to="/about">About</Link>
-                    <Link to="/exercises">Exercises</Link>
-                    <Link to="/dynamic">Dynamic</Link>
-                </nav>
-                <div>
+            <ThemeProvider theme={theme}>
+                <HeaderNav />
+                <Box sx={{
+                    maxWidth: "80vw",
+                    mx: "auto",
+                    px: 3,
+                }}
+                >
                     <React.Suspense fallback={<em>Loading...</em>}>
                         <Router>
                             <Dynamic path="dynamic" />
                             <Routes path="*" />
                         </Router>
                     </React.Suspense>
-                </div>
+                </Box>
             </ThemeProvider>
         </Root>
     );

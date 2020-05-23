@@ -1,9 +1,11 @@
 import React from "react";
-import WorkoutContainer from "components/WorkoutContainer";
+import { Box, Heading, Text } from "rebass";
 
 export default () => (
-    <div>
-        <WorkoutContainer />
-        <p>React Static is a progressive static site generator for React.</p>
-    </div>
+    <Box>
+        <Heading>About</Heading>
+        <Text>
+            TBD
+        </Text>
+    </Box>
 );

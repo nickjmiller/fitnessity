@@ -15,6 +15,7 @@
     "@theme-ui/presets": "^0.3.0",
     "@types/rebass": "^4.0.6",
     "@types/rebass__forms": "^4.0.2",
+    "@types/theme-ui": "^0.3.2",
     "emotion-theming": "^10.0.27",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -24,7 +25,8 @@
     "react-static-plugin-sitemap": "^7.2.0",
     "react-static-plugin-source-filesystem": "^7.2.0",
     "react-static-plugin-typescript": "^7.2.0",
-    "rebass": "^4.0.7"
+    "rebass": "^4.0.7",
+    "theme-ui": "^0.3.1"
   },
   "devDependencies": {
     "@types/node": "^12.7.2",
