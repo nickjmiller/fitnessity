@@ -6,21 +6,6 @@ import EXERCISES from "./src/data/exercises";
 
 export default {
     entry: path.join(__dirname, "src", "index.tsx"),
-    Document: ({
-        Html,
-        Head,
-        Body,
-        children,
-    }) => (
-            <Html lang="en-US">
-                <Head>
-                    <title>Integrum</title>
-                    <meta charSet="UTF-8" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1" />
-                </Head>
-                <Body>{children}</Body>
-            </Html>
-        ),
     getRoutes: async () => [
         {
             path: "/exercises",
