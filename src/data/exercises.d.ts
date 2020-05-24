@@ -7,6 +7,7 @@ export type Exercise = {
     mucles: Muscle[];
     equipment: Equipment[];
     alternate: boolean;
+    videoId: string;
 };
 
 declare const exercises: Exercise[];
