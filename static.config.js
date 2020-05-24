@@ -36,7 +36,6 @@ export default {
             })),
         },
     ],
-    siteroot: "https://integrum.nickmiller.dev",
     plugins: [
         "react-static-plugin-typescript",
         [
