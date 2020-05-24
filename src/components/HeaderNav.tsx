@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { Link } from "@reach/router";
 import { jsx } from "theme-ui";
-import { Flex } from "rebass";
+import { Flex, Button } from "rebass";
 
 const HeaderNav: React.FC = () => (
     <header
@@ -65,21 +65,13 @@ const HeaderNav: React.FC = () => (
         >
             <Link
                 to="/exercises"
-                sx={{
-                    variant: "styles.navlink",
-                    p: 2,
-                }}
             >
-                Exercises
+                <Button variant="primary" mr={2}>Exercises</Button>
             </Link>
             <Link
                 to="/about"
-                sx={{
-                    variant: "styles.navlink",
-                    p: 2,
-                }}
             >
-                About
+                <Button variant="primary" mr={2}>About</Button>
             </Link>
         </div>
     </header>

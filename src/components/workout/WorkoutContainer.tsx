@@ -13,7 +13,7 @@ type WorkoutContainerProps = {
 }
 
 type WorkoutContainerState = {
-    currentActivity: "set" | "rest" | "none" | "countdown";
+    currentActivity: "set" | "rest" | "none" | "countdown" | "complete" ;
     currentIndex: number;
     currentTimer: number;
     defaultSets: number;
@@ -42,6 +42,9 @@ export default class WorkoutContainer extends
         none: {
             text: "",
             color: "black",
+        },
+        complete: {
+            text: "Workout Complete!",
         },
     }
 
@@ -95,6 +98,7 @@ export default class WorkoutContainer extends
         const {
             currentIndex, defaultSets, defaultRestTime, defaultSetTime,
         } = this.state;
+        const { workout } = this.props;
         this.sets = defaultSets;
         while (this.sets > 0) {
             this.setState({
@@ -111,10 +115,19 @@ export default class WorkoutContainer extends
             });
             await this.countDownTimer(defaultRestTime);
         }
-        this.setState({
-            currentActivity: "none",
-            currentIndex: currentIndex + 1,
-        });
+        if (currentIndex < workout.length - 1) {
+            console.log(this.state);
+            console.log(workout);
+            this.setState({
+                currentActivity: "none",
+                currentIndex: currentIndex + 1,
+            });
+        } else {
+            console.log(this.state);
+            this.setState({
+                currentActivity: "complete",
+            });
+        }
     }
 
     setDefaultSets = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -153,10 +166,11 @@ export default class WorkoutContainer extends
                 <Flex justifyContent="flex-start" maxWidth="500px">
                     <Text fontWeight="bold" width={2 / 5} color={this.activityTextMap[currentActivity].color}>
                         {currentTimer ? `${this.activityTextMap[currentActivity].text} ${currentTimer}` : ""}
+                        {currentActivity === "complete" ? `${this.activityTextMap[currentActivity].text}` : ""}
                         &nbsp;
                     </Text>
                     <Text fontWeight="bold" width={2 / 5}>
-                        {currentActivity !== "none" ? `Sets remaining: ${this.sets}` : ""}
+                        {["none", "complete"].includes(currentActivity) ? "" : `Sets remaining: ${this.sets}`}
                         &nbsp;
                     </Text>
                 </Flex>
