@@ -44,7 +44,7 @@ const ExerciseInfo: React.FC<ExerciseInfoProps> = ({ title, description, videoId
                         rel: 0,
                         playlist: videoId,
                         loop: 1,
-                        origin: window.location.href,
+                        origin: "https://integrum.nickmiller.dev",
                         playsinline: 1,
                         showinfo: 0,
                         mute: 1,
