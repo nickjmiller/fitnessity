@@ -7,9 +7,8 @@ export default (_pluginOptions) => ({
         config.plugins.push(new GenerateSW({
             clientsClaim: true,
             skipWaiting: true,
-            include: [/\.html$/, /\.js$/],
             runtimeCaching: [{
-                urlPattern: /(.*)/,
+                urlPattern: new RegExp("/"),
                 handler: "StaleWhileRevalidate",
             }],
         }));
