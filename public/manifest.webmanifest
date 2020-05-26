@@ -1,7 +1,7 @@
 {
     "name": "Integrum",
     "short_name": "Integrum",
-    "start_url": "/index.html",
+    "start_url": "/?utm_source=web_app_manifest",
     "display": "standalone",
     "background_color": "#FFFFFF",
     "theme_color": "#3333ee",

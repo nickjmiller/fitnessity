@@ -8,6 +8,10 @@ export default (_pluginOptions) => ({
             clientsClaim: true,
             skipWaiting: true,
             include: [/\.html$/, /\.js$/],
+            runtimeCaching: [{
+                urlPattern: /(.*)/,
+                handler: "StaleWhileRevalidate",
+            }],
         }));
         return config;
     },
