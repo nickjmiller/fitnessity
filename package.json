@@ -45,6 +45,7 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^2.5.1",
     "serve": "^11.1.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "workbox-webpack-plugin": "^5.1.3"
   }
 }

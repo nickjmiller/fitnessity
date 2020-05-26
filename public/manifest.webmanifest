@@ -1,0 +1,26 @@
+{
+    "name": "Integrum",
+    "short_name": "Integrum",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#FFFFFF",
+    "theme_color": "#3333ee",
+    "description": "Intelligent workouts.",
+    "icons": [
+        {
+            "src": "/touch.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "/touch192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/touch512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

@@ -16,6 +16,9 @@ export default {
                 <Head>
                     <title>Integrum</title>
                     <meta charSet="UTF-8" />
+                    <meta name="theme-color" content="#3333ee" />
+                    <link rel="apple-touch-icon" href="/touch.png" />
+                    <link rel="manifest" href="/manifest.webmanifest" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
                 </Head>
                 <Body>{children}</Body>
