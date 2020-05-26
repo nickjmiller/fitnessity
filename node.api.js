@@ -7,6 +7,7 @@ export default (_pluginOptions) => ({
         config.plugins.push(new GenerateSW({
             clientsClaim: true,
             skipWaiting: true,
+            include: [/\.html$/, /\.js$/],
         }));
         return config;
     },
