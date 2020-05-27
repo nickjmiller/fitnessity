@@ -13,7 +13,7 @@ type WorkoutContainerProps = {
 }
 
 type WorkoutContainerState = {
-    currentActivity: "set" | "rest" | "none" | "countdown" | "complete" ;
+    currentActivity: "set" | "rest" | "none" | "countdown" | "complete";
     currentIndex: number;
     currentTimer: number;
     defaultSets: number;
@@ -99,7 +99,8 @@ export default class WorkoutContainer extends
             currentIndex, defaultSets, defaultRestTime, defaultSetTime,
         } = this.state;
         const { workout } = this.props;
-        this.sets = defaultSets;
+        const { alternate } = workout[currentIndex];
+        this.sets = defaultSets + ((alternate && defaultSets % 2) ? 1 : 0);
         while (this.sets > 0) {
             this.setState({
                 currentActivity: "countdown",
@@ -110,20 +111,19 @@ export default class WorkoutContainer extends
             });
             await this.countDownTimer(defaultSetTime);
             this.sets--;
-            this.setState({
-                currentActivity: "rest",
-            });
-            await this.countDownTimer(defaultRestTime);
+            if (!alternate || !(this.sets % 2)) {
+                this.setState({
+                    currentActivity: "rest",
+                });
+                await this.countDownTimer(defaultRestTime);
+            }
         }
         if (currentIndex < workout.length - 1) {
-            console.log(this.state);
-            console.log(workout);
             this.setState({
                 currentActivity: "none",
                 currentIndex: currentIndex + 1,
             });
         } else {
-            console.log(this.state);
             this.setState({
                 currentActivity: "complete",
             });
@@ -159,10 +159,9 @@ export default class WorkoutContainer extends
             paused,
         } = this.state;
         const { workout } = this.props;
-        const { title, description, videoId } = workout[currentIndex];
         return (
             <Box px="5vw">
-                <ExerciseInfo title={title} description={description} videoId={videoId} />
+                <ExerciseInfo exercise={workout[currentIndex]} />
                 <Flex justifyContent="flex-start" maxWidth="500px">
                     <Text fontWeight="bold" width={2 / 5} color={this.activityTextMap[currentActivity].color}>
                         {currentTimer ? `${this.activityTextMap[currentActivity].text} ${currentTimer}` : ""}
@@ -174,7 +173,7 @@ export default class WorkoutContainer extends
                         &nbsp;
                     </Text>
                 </Flex>
-                <Flex justifyContent="space-between" height="20vh">
+                <Flex justifyContent="space-between">
                     <Box width={2 / 5}>
                         <Label>
                             Default Sets (applies next exercise):
@@ -214,7 +213,6 @@ export default class WorkoutContainer extends
                         width={2 / 5}
                         justifyContent="space-around"
                         flexDirection="column"
-                        height="150px"
                     >
                         <Button disabled={currentActivity !== "none"} variant="primary" onClick={this.startTimer}>Go!</Button>
                         <Button disabled={!currentTimer} variant="outline" onClick={this.skipPress}>Skip</Button>

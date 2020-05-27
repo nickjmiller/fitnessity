@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { GenerateSW } from "workbox-webpack-plugin";
 
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default (_pluginOptions) => ({
     webpack: (config) => {
         config.plugins.push(new GenerateSW({

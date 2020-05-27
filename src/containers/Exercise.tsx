@@ -1,23 +1,28 @@
 import React from "react";
 import { useRouteData } from "react-static";
 import { Link } from "@reach/router";
-import { Button, Box } from "rebass";
+import { Button, Box, Text } from "rebass";
+import { Exercise } from "src/data/exercises";
 import ExerciseInfo from "../components/workout/ExerciseInfo";
-// eslint-disable-next-line no-unused-vars
 
 export default () => {
-    const { exercise }: { exercise: any} = useRouteData();
+    const { exercise }: { exercise: Exercise } = useRouteData();
     return (
         <Box>
             <Link to="/exercises/">
-                <Button variant="primary">Go Back</Button>
+                <Button variant="primary" marginBottom="1em">Go Back</Button>
             </Link>
-            <br />
-            <ExerciseInfo
-                title={exercise.title}
-                description={exercise.description}
-                videoId={exercise.videoId}
-            />
+            <ExerciseInfo exercise={exercise} />
+            <Text>
+                Muscle Groups: {exercise.muscles.join(", ")}
+            </Text>
+            {exercise.equipment.length
+                ? (
+                    <Text>
+                        Equipment: {exercise.equipment.join(", ")}
+                    </Text>
+                ) : null}
+
         </Box>
     );
 };

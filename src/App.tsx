@@ -4,7 +4,7 @@ import { Router } from "@reach/router";
 import Dynamic from "containers/Dynamic";
 import { ThemeProvider } from "theme-ui";
 import HeaderNav from "components/HeaderNav";
-import { Box } from "rebass";
+import { Box, Text } from "rebass";
 import theme from "./theme";
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
@@ -19,7 +19,7 @@ function App() {
                     maxWidth: "1000px",
                     mx: "auto",
                     px: 3,
-                    minHeight: "77vh",
+                    minHeight: "calc(100vh - 120px)",
                     paddingBottom: "2rem",
                 }}
                 >
@@ -30,12 +30,15 @@ function App() {
                         </Router>
                     </React.Suspense>
                 </Box>
-                <footer>
-                    <small>
+                <footer style={{
+                    marginTop: "auto",
+                }}
+                >
+                    <Text fontSize={[10, 11, 12]} color="grey">
                         &copy; Copyright 2020,
                         <> <a href="https://github.com/nickjmiller">nickjmiller</a></>
                         . All rights reserved.
-                    </small>
+                    </Text>
                 </footer>
             </ThemeProvider>
         </Root>

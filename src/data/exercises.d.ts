@@ -4,7 +4,7 @@ type Equipment = "bar" | "chair" | "block" | "ab roller" | "weight";
 export type Exercise = {
     title: string;
     description: string;
-    mucles: Muscle[];
+    muscles: Muscle[];
     equipment: Equipment[];
     alternate: boolean;
     videoId: string;
