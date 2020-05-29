@@ -25,7 +25,6 @@
     "react-static-plugin-sitemap": "^7.2.0",
     "react-static-plugin-source-filesystem": "^7.2.0",
     "react-static-plugin-typescript": "^7.2.0",
-    "react-youtube": "^7.11.2",
     "rebass": "^4.0.7",
     "theme-ui": "^0.3.1"
   },

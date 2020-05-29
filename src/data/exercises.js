@@ -1,6 +1,6 @@
 const EXERCISES = [
     {
-        videoId: "LyuPGIF55ZU",
+        videoSrc: "https://thumbs.gfycat.com/JoyfulShowyFlatfish-mobile.mp4",
         description: "During this movement, drive the non-balancing leg behind and to the right, return to starting position. Repeat going behind and to the left. The intent is to reach as far as possible in both directions by reaching outside of your base of support while still being able to maintain balance.",
         title: "Balance Mini Squats",
         muscles: ["quads", "glutes", "balance"],
@@ -8,7 +8,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoId: "Q2A1P0BVa_w",
+        videoSrc: "https://thumbs.gfycat.com/DaringEnergeticFruitbat-mobile.mp4",
         description: "During this movement, drive hips back towards object approximately 18 inches off ground (standard height of chair) and tap bottom without completely sitting. Return to standing position.",
         title: "Box Squats",
         muscles: ["quads", "glutes"],
@@ -16,7 +16,7 @@ const EXERCISES = [
         equipment: ["chair"],
     },
     {
-        videoId: "9CnL7SpWABI",
+        videoSrc: "https://thumbs.gfycat.com/ElaborateGraciousBats-mobile.mp4",
         description: "Step forward far enough that your shin bone is perpendicular to the floor. Return to starting position and repeat movement for opposite side. Focus on keeping an up-right posture while performing this movement. This will keep the focus on your quads. Bend more at the waist if you wish to put more emphasis on glutes during exercise.",
         title: "Forward Lunge",
         muscles: ["quads", "glutes"],
@@ -24,7 +24,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoId: "YbQ_chmeOfs",
+        videoSrc: "https://thumbs.gfycat.com/BiodegradableAgedFirecrest-mobile.mp4",
         description: "Stand with feet slightly wider than a normal squat position. Hold weight close to chest (harder) or hanging between legs (easier). While maintaining a neutral spine, lower weight towards ground while maintaining upright posture. Return to starting position.",
         title: "Goblet Squats",
         muscles: ["quads", "glutes"],
@@ -32,7 +32,7 @@ const EXERCISES = [
         equipment: ["weight"],
     },
     {
-        videoId: "H3rehm_WzSI",
+        videoSrc: "https://thumbs.gfycat.com/DistantDismalBuck-mobile.mp4",
         description: "While standing with one foot on object approximately 3-4 inches in height, allow other side to dangle off. While maintain knees in straight position, lower hanging side towards ground. Once lowered as far as possible without bending knees, lift hip as high as possible. Repeat on opposite side. (Key is for movement to come from hips and not from knee bending).",
         title: "Hip Hikes",
         muscles: ["quads", "glutes"],
@@ -40,7 +40,7 @@ const EXERCISES = [
         equipment: ["block"],
     },
     {
-        videoId: "2qlMFurS_KY",
+        videoSrc: "https://thumbs.gfycat.com/MagnificentWelcomeDolphin-mobile.mp4",
         description: "While facing forward, take a large step to side. Bend knee as far as balance/strength will allow and push off foot to return to starting position.",
         title: "Lateral Squat",
         muscles: ["glutes"],
@@ -48,7 +48,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoId: "K6-rYD7KJSk",
+        videoSrc: "https://thumbs.gfycat.com/PlayfulBountifulAngelfish-mobile.mp4",
         description: "Obtain a bar (a broom stick handle would work). Place hands far enough out on the bar such that the bar rests at approximately the crux of the hips while standing straight. From here raise bar over head, inline with the base of your skull while standing straight. Once in this position squat down as far as possible while maintaining bar in this position. Only squat to the depth that you can maintain the bar in idle position.",
         title: "Olympic Squats",
         muscles: ["glutes"],
@@ -56,7 +56,7 @@ const EXERCISES = [
         equipment: ["bar"],
     },
     {
-        videoId: "RnlId8EWnpE",
+        videoSrc: "https://thumbs.gfycat.com/ArtisticSimilarBagworm-mobile.mp4",
         description: "While standing on one leg, keep body rigid from head to floating foot. From here, lower chest towards ground while maintaining neutral spine. Go only as far as hamstring flexibility will allow and also while maintaining good form.",
         title: "Single Leg Deadlift",
         muscles: ["balance", "hamstrings", "glutes"],
@@ -64,7 +64,7 @@ const EXERCISES = [
         equipment: ["weight"],
     },
     {
-        videoId: "I7oWBqUiw9A",
+        videoSrc: "https://thumbs.gfycat.com/ScentedRawAlligator-mobile.mp4",
         description: "With feet placed directly under hips, maintain a neutral spine while lowering trunk towards ground, soft bend in the knees is preferred during this movement (Keep knees just shy of being completely locked out). Focus on using hamstring and glutes to return to upright position once maximal bend from hips is achieved.",
         title: "Straight Legged Deadlift (SLDL)",
         muscles: ["hamstrings", "glutes"],
@@ -72,7 +72,7 @@ const EXERCISES = [
         equipment: ["weight"],
     },
     {
-        videoId: "BgqeEizai0s",
+        videoSrc: "https://thumbs.gfycat.com/FrailCapitalAmbushbug-mobile.mp4",
         description: "Get into a lunge position with posterior foot placed on object approximately 18 inches off ground (about the height of a average chair). Maintain front shin perpendicular from floor. Focus on keeping upright posture while lowering your back knee towards floor without touching it on ground. Return to starting position and repeat on other side.",
         title: "Split Squat",
         muscles: ["glutes"],
@@ -80,7 +80,7 @@ const EXERCISES = [
         equipment: ["chair"],
     },
     {
-        videoId: "O9whHrwx0kE",
+        videoSrc: "https://thumbs.gfycat.com/ShrillImpressiveEstuarinecrocodile-mobile.mp4",
         description: "With feet about shoulder width apart, focus on driving hips back and towards the ground while maintaining upright posture. Think about driving knees out (away from each other) while going down and coming back up.",
         title: "Squats",
         muscles: ["glutes", "quads"],
@@ -88,7 +88,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoId: "iEhzM9UP3h4",
+        videoSrc: "https://thumbs.gfycat.com/UnripeThoughtfulBuzzard-mobile.mp4",
         description: "Using a bar (broom handle or PVC pipe would work) align it such that it touches the back of your head, your upper back, and your tail bone. Stand in squat position so that all three points of contact are maintained. Lower body into a squat while ensuring integrity of spine via 3 points of contact with bar. Only squat as deep as body will allow, meaning if loss of one of three points, stop and do not squat deeper under alignment is regained.",
         title: "Straight Bar Squats",
         muscles: ["glutes", "quads"],
@@ -96,7 +96,7 @@ const EXERCISES = [
         equipment: ["bar"],
     },
     {
-        videoId: "xsd1qU18VUk",
+        videoSrc: "https://thumbs.gfycat.com/AccurateChillyHammerheadshark-mobile.mp4",
         description: "With knees protected by soft surface (pillow or pad) roll on ab-roller only as far as you can that will allow for safe return to starting position.",
         title: "Ab Roller",
         muscles: ["abs"],
@@ -104,7 +104,7 @@ const EXERCISES = [
         equipment: ["ab roller"],
     },
     {
-        videoId: "r9OdVNMhzOU",
+        videoSrc: "https://thumbs.gfycat.com/PitifulAdmiredIcelandichorse-mobile.mp4",
         description: "While laying on back, bring hands and feet into the air. Focus on driving your lower back into the ground such that there is no space between low back and ground. Once in this position, maintain focus on low back while extending opposite hand and leg. Only extend as far as possible without arching low back. Repeat for both sides.",
         title: "Supine Contralateral Extensions",
         muscles: ["abs"],
@@ -112,7 +112,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoId: "dXkTxnv9Ebw",
+        videoSrc: "https://thumbs.gfycat.com/SinfulWaterloggedConey-mobile.mp4",
         description: "While laying on back, grab object like closed door or couch for stability. Focus on driving your low back into the ground such that there is no space between low back and ground. Once in this position, Raise legs into the air without arching low back. Only extend as far as possible without arching low back. Repeat for both sides.",
         title: "Leg Raises",
         muscles: ["abs"],
@@ -120,7 +120,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoId: "OCvcRHGpTws",
+        videoSrc: "https://thumbs.gfycat.com/AntiqueThriftyCapeghostfrog-mobile.mp4",
         description: "Get onto stomach and place elbows underneath shoulders, come up onto toes (knees if toes are too hard) and straighten body. Think about tucking hips in to activate core while in this position. If to easy, bring elbows forward underneath forehand and maintain position.",
         title: "Planks",
         muscles: ["abs"],
@@ -128,7 +128,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoId: "xItYXndVN0I",
+        videoSrc: "https://thumbs.gfycat.com/PossibleFemaleIrishwaterspaniel-mobile.mp4",
         description: "Get onto hands and knees. Drive hands into ground pushing away through shoulders. maintain this position throughout movement. Lift opposite hand and leg, extending both at the same time. Maintain neutral spine through movement, If low back arches, only extend as far as body will allow in order to maintain neutral spine.",
         title: "Quadruped Contralateral Extensions",
         muscles: ["abs", "balance"],
@@ -136,7 +136,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoId: "SwkUJys3ZCY",
+        videoSrc: "https://thumbs.gfycat.com/RelievedPettyHarborseal-mobile.mp4",
         description: "While laying on your back, hold a light weight straight up towards ceiling. Lift the same side knee into the air holding at a 90 degree position. Roll towards side that does not have hand in the air. Roll while maintaining shoulders and hips in same position. While rolling, keep raised hand in same position.",
         title: "Shoulder Stability Roll",
         muscles: ["shoulder", "stretch"],
@@ -144,7 +144,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoId: "yZesIQH7c6A",
+        videoSrc: "https://thumbs.gfycat.com/IncompatibleEnchantedArgentineruddyduck-mobile.mp4",
         description: "Lie face down on ground with hands placed above head. Rotate thumbs so that are facing the ceiling. Lift chest, arms and legs off the ground. Do not bend knees, but instead keep legs straight as you lift.",
         title: "Supermans",
         muscles: ["back"],
@@ -152,7 +152,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoId: "IR4yk2CNgjY",
+        videoSrc: "https://thumbs.gfycat.com/UnpleasantLivelyDungenesscrab-mobile.mp4",
         description: "While laying on stomach and arms above head, rotate thumbs up so that are pointed towards the ceiling. Lift opposite hand and leg in 1-2 second lifts. Repeat on opposite side.",
         title: "Prone Contralateral Extensions",
         muscles: ["back"],
@@ -160,7 +160,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoId: "NZMHPJKZpBY",
+        videoSrc: "https://thumbs.gfycat.com/SomeSomeElectriceel-mobile.mp4",
         description: "While laying on stomach with arms above head, rotate thumbs up so that are pointed towards the ceiling. Lift one side as high as possible or until your hand is pointed towards ceiling. Rotate through spine and return to starting position.",
         title: "Y Extensions",
         muscles: ["back"],
@@ -168,7 +168,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoId: "Ymd0Al5HCQY",
+        videoSrc: "https://thumbs.gfycat.com/SpitefulSmugArachnid-mobile.mp4",
         description: "With a sturdy surface (chair), pull body away to allow room to lower hips towards floor by bending elbows. Keep elbows in throughout movement. Only go as deep as shoulders will allow as movement places stress on the front aspect of shoulders.",
         title: "Body Weight Dips",
         muscles: ["chest", "triceps"],
@@ -176,7 +176,7 @@ const EXERCISES = [
         equipment: ["chair"],
     },
     {
-        videoId: "yMV06Ea7UMA",
+        videoSrc: "https://thumbs.gfycat.com/WaterloggedGlumHerring-mobile.mp4",
         description: "While standing, raise weights from side to chest while rotating hand palm up. Return to starting position by straightening elbow and rotating hand back towards pockets. Alternative is to perform hammer curl, which typically involves larger weight and curling like as though it was a hammer.",
         title: "Dumbbell Curls",
         muscles: ["biceps"],
@@ -184,7 +184,7 @@ const EXERCISES = [
         equipment: ["weight"],
     },
     {
-        videoId: "-oxd1OoC4v8",
+        videoSrc: "https://thumbs.gfycat.com/DistantMarriedBeagle-mobile.mp4",
         description: "Do a push up after each of the following positions: 1) Place hands normally, 2) Place hands wide, 3) One hand forward and one hand back, repeat but for opposite side, 4) Hands by forehead lowing down to elbows, 5) Hands together making a diamond shape between each hands pointer finger and thumbs.",
         title: "Dynamic Push Ups",
         muscles: ["chest"],
@@ -192,7 +192,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoId: "oh19t9bTj2A",
+        videoSrc: "https://thumbs.gfycat.com/EllipticalVapidHammerheadbird-mobile.mp4",
         description: "Standing with weights in hands, raise weights in front until level with shoulder and return to starting position.",
         title: "Front Delt Raise",
         muscles: ["shoulder"],
@@ -200,7 +200,7 @@ const EXERCISES = [
         equipment: ["weight"],
     },
     {
-        videoId: "DIn1zgEdiRA",
+        videoSrc: "https://thumbs.gfycat.com/FaithfulBriskAmericancurl-mobile.mp4",
         description: "Starting in a downward dog position, lower nose towards floor as though attempting to slide underneath an object. Return to start position and repeat.",
         title: "Hindu Push Ups",
         muscles: ["chest", "shoulder"],
@@ -208,7 +208,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoId: "tdkkGLwXX5I",
+        videoSrc: "https://thumbs.gfycat.com/DarlingAridGalapagosalbatross-mobile.mp4",
         description: "Place feet higher than hands and perform a standard push up.",
         title: "Incline Push Ups",
         muscles: ["chest"],
@@ -216,7 +216,7 @@ const EXERCISES = [
         equipment: ["chair"],
     },
     {
-        videoId: "1118nQjpmGU",
+        videoSrc: "https://thumbs.gfycat.com/UnpleasantInsecureIndianelephant-mobile.mp4",
         description: "Holding weights at side, bring them up until arms are level with shoulders. Focus on driving elbows high in order to activate deltoid muscle.",
         title: "Lateral Raises",
         muscles: ["shoulder"],
@@ -224,7 +224,7 @@ const EXERCISES = [
         equipment: ["weight"],
     },
     {
-        videoId: "5U7k7vVlbqI",
+        videoSrc: "https://thumbs.gfycat.com/IncredibleLawfulBumblebee-mobile.mp4",
         description: "Place hands at/or slightly wider than shoulders. Lower chest towards ground while maintaining straight body alignment. Push self back to starting position. Be sure to fully extend arms before attempting next rep.",
         title: "Push Ups",
         muscles: ["chest"],
@@ -232,7 +232,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoId: "NIs2le9MkVY",
+        videoSrc: "https://thumbs.gfycat.com/HotSoggyGibbon-mobile.mp4",
         description: "Place feet on object approximately 18 inches off ground (standard chair height). From here, lift hips as high into the air as possible provided arms can support position. If position is difficult, maintain this position for duration of exercise. If it is easy, lower head towards ground WITHOUT touching and raise back to start position.",
         title: "Body Weight Shoulder Press",
         muscles: ["shoulder"],
@@ -240,7 +240,7 @@ const EXERCISES = [
         equipment: ["chair"],
     },
     {
-        videoId: "3DDxtCCdcGg",
+        videoSrc: "https://thumbs.gfycat.com/SpicyConfusedHumpbackwhale-mobile.mp4",
         description: "While standing on one leg, press weight on opposite side into the air. Be sure to maintain a level pelvis while pressing.",
         title: "Single Leg Shoulder Press",
         muscles: ["shoulder", "glutes", "balance"],
@@ -248,7 +248,7 @@ const EXERCISES = [
         equipment: ["weight"],
     },
     {
-        videoId: "JtwPs4A-N6Y",
+        videoSrc: "https://thumbs.gfycat.com/BouncyKindFinch-mobile.mp4",
         description: "Bend at waist until trunk is parallel with floor. If needed, place opposite hand on additional surface for stabilization. While keeping the working arms elbow stabilized at side, extend weight against gravity.",
         title: "Tricep Extension",
         muscles: ["triceps"],
@@ -256,7 +256,7 @@ const EXERCISES = [
         equipment: ["weight"],
     },
     {
-        videoId: "ho_CbS52J-c",
+        videoSrc: "https://thumbs.gfycat.com/TemptingAdoredBarracuda-mobile.mp4",
         description: "Perform a standard push up with object 4-8 inches in height under one hand. Repeat push ups for opposite side.",
         title: "Uneven Push Ups",
         muscles: ["triceps"],
@@ -264,12 +264,36 @@ const EXERCISES = [
         equipment: ["block"],
     },
     {
-        videoId: "GXZopnRkhsQ",
+        videoSrc: "https://thumbs.gfycat.com/SnoopyPhysicalAnhinga-mobile.mp4",
         description: "Starting from a position on your knees, raise your weight from shoulder into air.",
         title: "Shoulder Press",
         muscles: ["shoulder"],
         alternate: true,
         equipment: ["weight"],
+    },
+    {
+        videoSrc: "https://thumbs.gfycat.com/FilthyTotalAzurevase-mobile.mp4",
+        description: "while holding weight at sides elevate shoulders towards ears. return to starting position. DO NOT ROLL SHOULDERS WITH WEIGHT.",
+        title: "Shrugs",
+        muscles: ["shoulder"],
+        alternate: false,
+        equipment: ["weight"],
+    },
+    {
+        videoSrc: "https://thumbs.gfycat.com/BonyEnormousBanteng-mobile.mp4",
+        description: "While in a push up position, ensure that pelvis is in correct position by tucking pelvis in. Then proceed to lift one leg at a time towards opposite stabilizing arm. Repeat movement on other side.",
+        title: "Mountain Climbers",
+        alternate: false,
+        muscles: ["abs"],
+        equipment: [],
+    },
+    {
+        videoSrc: "https://thumbs.gfycat.com/WaterloggedGlumHerring-mobile.mp4",
+        title: "Bridges",
+        description: "Staring in supine with knees bent, maintain a tight core by blowing air out as if to blow out a candle while raising you hips off the ground. Drive both heels into the floor for this movement.",
+        alternate: false,
+        muscles: ["glutes", "hamstrings", "abs"],
+        equipment: [],
     },
 ];
 
