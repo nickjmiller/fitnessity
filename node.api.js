@@ -9,7 +9,10 @@ export default (_pluginOptions) => ({
             skipWaiting: true,
             runtimeCaching: [{
                 urlPattern: new RegExp("/"),
-                handler: "StaleWhileRevalidate",
+                handler: "NetworkFirst",
+            }, {
+                urlPattern: new RegExp("https://thumbs.gfycat.com/*.mp4"),
+                handler: "CacheFirst",
             }],
         }));
         return config;
