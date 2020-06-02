@@ -14,7 +14,7 @@ export default {
     }) => (
             <Html lang="en-US">
                 <Head>
-                    <title>Integrum</title>
+                    <title>Fitnessity</title>
                     <meta charSet="UTF-8" />
                     <meta name="theme-color" content="#3333ee" />
                     <link rel="apple-touch-icon" href="/touch.png" />
@@ -42,7 +42,7 @@ export default {
             })),
         },
     ],
-    siteroot: "https://integrum.nickmiller.dev",
+    siteroot: "https://fitnessity.org",
     plugins: [
         "react-static-plugin-typescript",
         [

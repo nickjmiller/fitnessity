@@ -55,7 +55,7 @@ export default class WorkoutContainer extends
             currentIndex: 0,
             currentTimer: 0,
             defaultSets: 3,
-            defaultSetTime: 60,
+            defaultSetTime: 40,
             defaultRestTime: 60,
             paused: false,
         };

@@ -1,5 +1,5 @@
 {
-  "name": "integrum",
+  "name": "fitnessity",
   "private": true,
   "scripts": {
     "start": "react-static start",
