@@ -4,6 +4,7 @@ import {
     Box, Button, Flex, Text,
 } from "rebass";
 import { Slider, Label } from "@rebass/forms";
+import Sound from "react-sound";
 import ExerciseInfo from "./ExerciseInfo";
 // eslint-disable-next-line
 import { Exercise } from "../../data/exercises";
@@ -20,6 +21,7 @@ type WorkoutContainerState = {
     defaultSetTime: number;
     defaultRestTime: number;
     paused: boolean;
+    warning: boolean;
 }
 
 export default class WorkoutContainer extends
@@ -58,6 +60,7 @@ export default class WorkoutContainer extends
             defaultSetTime: 40,
             defaultRestTime: 60,
             paused: false,
+            warning: false,
         };
     }
 
@@ -65,16 +68,26 @@ export default class WorkoutContainer extends
         this.setState({
             currentTimer: startTime,
         });
+        if (startTime < 5) {
+            this.setState({
+                warning: true,
+            });
+        }
         this.interval = setInterval(() => {
             const { currentTimer, paused } = this.state;
             if (paused) {
                 return;
             }
-            if (currentTimer > 0) {
+            this.setState({
+                currentTimer: currentTimer - 1,
+            });
+            this.setState({
+                warning: currentTimer > 1 && currentTimer < 6,
+            });
+            if (currentTimer - 1 < 0) {
                 this.setState({
-                    currentTimer: currentTimer - 1,
+                    warning: false,
                 });
-            } else {
                 clearInterval(this.interval);
                 resolve();
             }
@@ -91,6 +104,7 @@ export default class WorkoutContainer extends
     skipPress = () => {
         this.setState({
             currentTimer: 0,
+            paused: false,
         });
     }
 
@@ -157,10 +171,12 @@ export default class WorkoutContainer extends
             defaultSetTime,
             defaultRestTime,
             paused,
+            warning,
         } = this.state;
         const { workout } = this.props;
         return (
             <Box px="5vw">
+                {warning ? <Sound url="sounds/countdown.mp3" playStatus="PLAYING" /> : null}
                 <ExerciseInfo exercise={workout[currentIndex]} />
                 <Flex justifyContent="flex-start" maxWidth="500px">
                     <Text fontWeight="bold" width={2 / 5} color={this.activityTextMap[currentActivity].color}>
