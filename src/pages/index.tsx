@@ -1,6 +1,5 @@
 import React from "react";
 import WorkoutContainer from "components/workout/WorkoutContainer";
-import { Box } from "rebass";
 import EXERCISES from "../data/exercises";
 
 const shuffleExercises = () => {
@@ -15,7 +14,5 @@ const shuffleExercises = () => {
 };
 
 export default () => (
-    <Box>
-        <WorkoutContainer workout={shuffleExercises().slice(0, 5)} />
-    </Box>
+    <WorkoutContainer workout={shuffleExercises().slice(0, 5)} />
 );

@@ -4,10 +4,16 @@ import {
     Box, Button, Flex, Text,
 } from "rebass";
 import { Slider, Label } from "@rebass/forms";
-import UIfx from "uifx";
 import ExerciseInfo from "./ExerciseInfo";
 // eslint-disable-next-line
 import { Exercise } from "../../data/exercises";
+let UIfx: any;
+
+// document is not defined during react-static compilation
+if (typeof document !== "undefined") {
+    // eslint-disable-next-line global-require
+    UIfx = require("uifx").default;
+}
 
 type WorkoutContainerProps = {
     workout: Exercise[]
@@ -25,7 +31,7 @@ type WorkoutContainerState = {
 
 export default class WorkoutContainer extends
     React.Component<WorkoutContainerProps, WorkoutContainerState> {
-    private countdown = new UIfx("sounds/countdown.mp3");
+    private countdown = UIfx ? new UIfx("sounds/countdown.mp3") : undefined;
 
     private interval: any;
 
@@ -68,7 +74,7 @@ export default class WorkoutContainer extends
         this.setState({
             currentTimer: startTime,
         });
-        if (startTime < 6) {
+        if (startTime < 7) {
             this.countdown.play();
         }
         this.interval = setInterval(() => {
@@ -79,7 +85,7 @@ export default class WorkoutContainer extends
             this.setState({
                 currentTimer: currentTimer - 1,
             });
-            if (currentTimer < 6 && currentTimer > 1) {
+            if (currentTimer < 7 && currentTimer > 1) {
                 this.countdown.play();
             }
             if (currentTimer < 1) {
@@ -173,7 +179,7 @@ export default class WorkoutContainer extends
                 <ExerciseInfo exercise={workout[currentIndex]} />
                 <Flex justifyContent="flex-start" maxWidth="500px">
                     <Text fontWeight="bold" width={2 / 5} color={this.activityTextMap[currentActivity].color}>
-                        {currentTimer ? `${this.activityTextMap[currentActivity].text} ${currentTimer}` : ""}
+                        {currentTimer > 0 ? `${this.activityTextMap[currentActivity].text} ${currentTimer}` : ""}
                         {currentActivity === "complete" ? `${this.activityTextMap[currentActivity].text}` : ""}
                         &nbsp;
                     </Text>
