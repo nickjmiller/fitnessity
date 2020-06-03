@@ -80,14 +80,9 @@ export default class WorkoutContainer extends
             }
             this.setState({
                 currentTimer: currentTimer - 1,
-            });
-            this.setState({
                 warning: currentTimer > 1 && currentTimer < 6,
             });
             if (currentTimer - 1 < 0) {
-                this.setState({
-                    warning: false,
-                });
                 clearInterval(this.interval);
                 resolve();
             }
