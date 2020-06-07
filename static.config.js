@@ -42,7 +42,8 @@ export default {
             })),
         },
     ],
-    siteroot: "https://fitnessity.org",
+    siteRoot: "https://fitnessity.org",
+    stagingSiteRoot: "http://127.0.0.1:3000",
     plugins: [
         "react-static-plugin-typescript",
         [

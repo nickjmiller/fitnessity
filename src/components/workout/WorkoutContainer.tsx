@@ -4,9 +4,11 @@ import {
     Box, Button, Flex, Text,
 } from "rebass";
 import { Slider, Label } from "@rebass/forms";
+import Timer, { TimerControls } from "react-compound-timer";
 import ExerciseInfo from "./ExerciseInfo";
 // eslint-disable-next-line
 import { Exercise } from "../../data/exercises";
+
 let UIfx: any;
 
 // document is not defined during react-static compilation
@@ -23,30 +25,31 @@ type WorkoutContainerState = {
     currentActivity: "set" | "rest" | "none" | "countdown" | "complete";
     currentIndex: number;
     currentTimer: number;
+    currentSets: number;
     defaultSets: number;
     defaultSetTime: number;
     defaultRestTime: number;
-    paused: boolean;
 }
 
 export default class WorkoutContainer extends
     React.Component<WorkoutContainerProps, WorkoutContainerState> {
     private countdown = UIfx ? new UIfx("sounds/countdown.mp3") : undefined;
 
-    private interval: any;
+    private start = UIfx ? new UIfx("sounds/start.mp3") : undefined;
 
-    private sets: number;
+    private timerDone = UIfx ? new UIfx("sounds/timerDone.mp3") : undefined;
+
 
     private activityTextMap: any = {
         countdown: {
-            text: "Ready in:",
+            text: <>Ready in: <Timer.Seconds /> seconds</>,
             color: "green",
         },
         set: {
-            text: "Time Remaining:",
+            text: <>Time Remaining: <Timer.Seconds /> seconds</>,
         },
         rest: {
-            text: "Resting:",
+            text: <>Resting: <Timer.Seconds /> seconds</>,
         },
         none: {
             text: "",
@@ -66,83 +69,74 @@ export default class WorkoutContainer extends
             defaultSets: 3,
             defaultSetTime: 40,
             defaultRestTime: 60,
-            paused: false,
+            currentSets: 3,
         };
     }
 
-    countDownTimer = (startTime: number) => new Promise((resolve) => {
-        this.setState({
-            currentTimer: startTime,
-        });
-        if (startTime < 7) {
-            this.countdown.play();
+    pause = (resume: TimerControls["resume"], pause: TimerControls["pause"], getTimerState: TimerControls["getTimerState"]) => () => {
+        const state = getTimerState();
+        if (state === "PLAYING") {
+            pause();
+        } else {
+            resume();
         }
-        this.interval = setInterval(() => {
-            const { currentTimer, paused } = this.state;
-            if (paused) {
+    }
+
+    setActivity = (start: TimerControls["start"], setTime: TimerControls["setTime"]) => () => {
+        const {
+            currentActivity, currentSets, defaultSets, defaultRestTime,
+        } = this.state;
+        if (currentActivity === "countdown") {
+            this.setState({
+                currentSets: defaultSets,
+            });
+            this.startSet(setTime);
+        } else if (currentActivity === "set") {
+            this.timerDone.play();
+            if (currentSets === 1) {
+                this.getNextExercise();
                 return;
             }
             this.setState({
-                currentTimer: currentTimer - 1,
+                currentSets: currentSets - 1,
+                currentActivity: "rest",
             });
-            if (currentTimer < 7 && currentTimer > 1) {
-                this.countdown.play();
-            }
-            if (currentTimer < 1) {
-                clearInterval(this.interval);
-                resolve();
-            }
-        }, 1000);
-    });
-
-    pausePress = () => {
-        const { paused } = this.state;
-        this.setState({
-            paused: !paused,
-        });
-    }
-
-    skipPress = () => {
-        this.setState({
-            currentTimer: 0,
-            paused: false,
-        });
-    }
-
-    startTimer = async () => {
-        const {
-            currentIndex, defaultSets, defaultRestTime, defaultSetTime,
-        } = this.state;
-        const { workout } = this.props;
-        const { alternate } = workout[currentIndex];
-        this.sets = defaultSets + ((alternate && defaultSets % 2) ? 1 : 0);
-        while (this.sets > 0) {
+            setTime(defaultRestTime * 1000 + 10);
+        } else if (currentActivity === "rest") {
+            this.startSet(setTime);
+        } else if (currentActivity === "none") {
             this.setState({
                 currentActivity: "countdown",
             });
-            await this.countDownTimer(3);
-            this.setState({
-                currentActivity: "set",
-            });
-            await this.countDownTimer(defaultSetTime);
-            this.sets--;
-            if (!alternate || !(this.sets % 2)) {
-                this.setState({
-                    currentActivity: "rest",
-                });
-                await this.countDownTimer(defaultRestTime);
-            }
+            this.countdown.play();
+            setTime(3100);
         }
-        if (currentIndex < workout.length - 1) {
-            this.setState({
-                currentActivity: "none",
-                currentIndex: currentIndex + 1,
-            });
-        } else {
-            this.setState({
-                currentActivity: "complete",
-            });
-        }
+        start();
+    }
+
+    setCheckpointsForActivity = (start: TimerControls["start"], setTime: TimerControls["setTime"], setCheckpoionts: TimerControls["setCheckpoints"]) => {
+        setCheckpoionts([
+            {
+                time: 4000,
+                callback: () => this.countdown.play(),
+            },
+            {
+                time: 3000,
+                callback: () => this.countdown.play(),
+            },
+            {
+                time: 2000,
+                callback: () => this.countdown.play(),
+            },
+            {
+                time: 1000,
+                callback: () => this.countdown.play(),
+            },
+            {
+                time: 0,
+                callback: this.setActivity(start, setTime),
+            },
+        ]);
     }
 
     setDefaultSets = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -163,33 +157,48 @@ export default class WorkoutContainer extends
         });
     }
 
+    startSet = (setTime: TimerControls["setTime"]) => {
+        const { defaultSetTime } = this.state;
+        this.start.play();
+        this.setState({
+            currentActivity: "set",
+        });
+        setTime(defaultSetTime * 1000 + 10);
+    }
+
+    getNextExercise = () => {
+        const { currentIndex, defaultSets } = this.state;
+        const { workout } = this.props;
+        if (currentIndex < workout.length - 1) {
+            this.setState({
+                currentActivity: "none",
+                currentIndex: currentIndex + 1,
+                currentSets: defaultSets,
+            });
+        } else {
+            this.setState({
+                currentActivity: "complete",
+            });
+        }
+    }
+
     render(): JSX.Element {
         const {
             currentActivity,
             currentIndex,
+            currentSets,
             currentTimer,
             defaultSets,
             defaultSetTime,
             defaultRestTime,
-            paused,
         } = this.state;
         const { workout } = this.props;
         return (
             <Box px="5vw">
                 <ExerciseInfo exercise={workout[currentIndex]} />
-                <Flex justifyContent="flex-start" maxWidth="500px">
-                    <Text fontWeight="bold" width={2 / 5} color={this.activityTextMap[currentActivity].color}>
-                        {currentTimer > 0 ? `${this.activityTextMap[currentActivity].text} ${currentTimer}` : ""}
-                        {currentActivity === "complete" ? `${this.activityTextMap[currentActivity].text}` : ""}
-                        &nbsp;
-                    </Text>
-                    <Text fontWeight="bold" width={2 / 5}>
-                        {["none", "complete"].includes(currentActivity) ? "" : `Sets remaining: ${this.sets}`}
-                        &nbsp;
-                    </Text>
-                </Flex>
                 <Flex justifyContent="space-between">
                     <Box width={2 / 5}>
+                        <Text fontWeight="bold">{currentActivity === "set" || currentActivity === "rest" ? `Sets Remaining: ${currentSets}` : ""}</Text>
                         <Label>
                             Default Sets (applies next exercise):
                             {` ${defaultSets}`}
@@ -226,12 +235,31 @@ export default class WorkoutContainer extends
                     </Box>
                     <Flex
                         width={2 / 5}
-                        justifyContent="space-around"
                         flexDirection="column"
                     >
-                        <Button disabled={currentActivity !== "none"} variant="primary" onClick={this.startTimer}>Go!</Button>
-                        <Button disabled={!currentTimer} variant="outline" onClick={this.skipPress}>Skip</Button>
-                        <Button disabled={!(paused || currentTimer)} variant="outline" onClick={this.pausePress}>{paused ? "Resume" : "Pause"}</Button>
+                        <Timer
+                            initialTime={currentTimer + 10}
+                            direction="backward"
+                            startImmediately={false}
+                        >
+                            {({
+                                pause, resume, start, setTime, setCheckpoints, getTimerState,
+                            }: TimerControls) => {
+                                this.setCheckpointsForActivity(start, setTime, setCheckpoints);
+                                return (
+                                    <>
+                                        <Text color={this.activityTextMap[currentActivity].color} fontWeight="bold">
+                                            {this.activityTextMap[currentActivity].text}
+                                        </Text>
+                                        <Button disabled={currentActivity !== "none"} variant="primary" onClick={this.setActivity(start, setTime)}>Go!</Button>
+                                        <Button variant="outline" onClick={() => setTime(10)}>Skip</Button>
+                                        <Button variant="outline" onClick={this.pause(resume, pause, getTimerState)}>
+                                            {getTimerState() === "PAUSED" ? "Resume" : "Pause"}
+                                        </Button>
+                                    </>
+                                );
+                            }}
+                        </Timer>
                     </Flex>
                 </Flex>
             </Box>
