@@ -33,11 +33,11 @@ type WorkoutContainerState = {
 
 export default class WorkoutContainer extends
     React.Component<WorkoutContainerProps, WorkoutContainerState> {
-    private countdown = UIfx ? new UIfx("sounds/countdown.mp3") : undefined;
+    private countdown = UIfx ? new UIfx(`${window.location.origin}/sounds/countdown.mp3`) : undefined;
 
-    private start = UIfx ? new UIfx("sounds/start.mp3") : undefined;
+    private start = UIfx ? new UIfx(`${window.location.origin}/sounds/start.mp3`) : undefined;
 
-    private timerDone = UIfx ? new UIfx("sounds/timerDone.mp3") : undefined;
+    private timerDone = UIfx ? new UIfx(`${window.location.origin}/sounds/timerDone.mp3`) : undefined;
 
 
     private activityTextMap: any = {
@@ -82,34 +82,40 @@ export default class WorkoutContainer extends
         }
     }
 
-    setActivity = (start: TimerControls["start"], setTime: TimerControls["setTime"]) => () => {
-        const {
-            currentActivity, currentSets, defaultSets, defaultRestTime,
-        } = this.state;
-        if (currentActivity === "countdown") {
-            this.setState({
-                currentSets: defaultSets,
-            });
-            this.startSet(setTime);
-        } else if (currentActivity === "set") {
+    handleSetComplete = (currentSets: number, currentExercise: Exercise, defaultRestTime: number, setTime: TimerControls["setTime"]) => {
+        if (currentSets === 1) {
+            this.getNextExercise();
+            return;
+        }
+        this.setState({
+            currentSets: currentSets - 1,
+        });
+        if (currentExercise.alternate && !(currentSets % 2)) {
+            this.startCountdown(setTime);
+        } else {
             this.timerDone.play();
-            if (currentSets === 1) {
-                this.getNextExercise();
-                return;
-            }
+            setTime(defaultRestTime * 1000 + 10);
             this.setState({
-                currentSets: currentSets - 1,
                 currentActivity: "rest",
             });
-            setTime(defaultRestTime * 1000 + 10);
-        } else if (currentActivity === "rest") {
+        }
+    }
+
+    setActivity = (start: TimerControls["start"], setTime: TimerControls["setTime"]) => () => {
+        const {
+            currentActivity, currentIndex, currentSets, defaultSets, defaultRestTime,
+        } = this.state;
+        const {
+            workout,
+        } = this.props;
+        if (currentActivity === "countdown") {
             this.startSet(setTime);
+        } else if (currentActivity === "set") {
+            this.handleSetComplete(currentSets, workout[currentIndex], defaultRestTime, setTime);
+        } else if (currentActivity === "rest") {
+            this.startCountdown(setTime);
         } else if (currentActivity === "none") {
-            this.setState({
-                currentActivity: "countdown",
-            });
-            this.countdown.play();
-            setTime(3100);
+            this.startExercise(defaultSets, workout[currentIndex], setTime);
         }
         start();
     }
@@ -157,6 +163,14 @@ export default class WorkoutContainer extends
         });
     }
 
+    startCountdown = (setTime: TimerControls["setTime"]) => {
+        this.setState({
+            currentActivity: "countdown",
+        });
+        this.countdown.play();
+        setTime(3100);
+    }
+
     startSet = (setTime: TimerControls["setTime"]) => {
         const { defaultSetTime } = this.state;
         this.start.play();
@@ -164,6 +178,17 @@ export default class WorkoutContainer extends
             currentActivity: "set",
         });
         setTime(defaultSetTime * 1000 + 10);
+    }
+
+    startExercise = (defaultSets: number, currentExercise: Exercise, setTime: TimerControls["setTime"]) => {
+        let sets = defaultSets;
+        if (sets % 2 && currentExercise.alternate) {
+            sets++;
+        }
+        this.setState({
+            currentSets: sets,
+        });
+        this.startCountdown(setTime);
     }
 
     getNextExercise = () => {
@@ -178,6 +203,7 @@ export default class WorkoutContainer extends
         } else {
             this.setState({
                 currentActivity: "complete",
+                currentSets: 0,
             });
         }
     }
@@ -198,7 +224,7 @@ export default class WorkoutContainer extends
                 <ExerciseInfo exercise={workout[currentIndex]} />
                 <Flex justifyContent="space-between">
                     <Box width={2 / 5}>
-                        <Text fontWeight="bold">{currentActivity === "set" || currentActivity === "rest" ? `Sets Remaining: ${currentSets}` : ""}</Text>
+                        <Text fontWeight="bold">{!(currentActivity === "none") ? `Sets Remaining: ${currentSets}` : ""}&nbsp;</Text>
                         <Label>
                             Default Sets (applies next exercise):
                             {` ${defaultSets}`}
@@ -249,11 +275,11 @@ export default class WorkoutContainer extends
                                 return (
                                     <>
                                         <Text color={this.activityTextMap[currentActivity].color} fontWeight="bold">
-                                            {this.activityTextMap[currentActivity].text}
+                                            {this.activityTextMap[currentActivity].text}&nbsp;
                                         </Text>
                                         <Button disabled={currentActivity !== "none"} variant="primary" onClick={this.setActivity(start, setTime)}>Go!</Button>
-                                        <Button variant="outline" onClick={() => setTime(10)}>Skip</Button>
-                                        <Button variant="outline" onClick={this.pause(resume, pause, getTimerState)}>
+                                        <Button disabled={currentActivity === "complete"} variant="outline" onClick={() => setTime(10)}>Skip</Button>
+                                        <Button disabled={currentActivity === "complete"} variant="outline" onClick={this.pause(resume, pause, getTimerState)}>
                                             {getTimerState() === "PAUSED" ? "Resume" : "Pause"}
                                         </Button>
                                     </>
