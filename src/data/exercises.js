@@ -288,7 +288,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoSrc: "https://thumbs.gfycat.com/WaterloggedGlumHerring-mobile.mp4",
+        videoSrc: "https://thumbs.gfycat.com/UncommonMediumGrub-mobile.mp4",
         title: "Bridges",
         description: "Staring in supine with knees bent, maintain a tight core by blowing air out as if to blow out a candle while raising you hips off the ground. Drive both heels into the floor for this movement.",
         alternate: false,
@@ -329,7 +329,7 @@ const EXERCISES = [
     },
     {
         videoSrc: "https://thumbs.gfycat.com/DefensiveHorribleGrison-mobile.mp4",
-        title: "farmer Walks",
+        title: "Farmer Walks",
         description: "hold weights at side with a pinch grip, walk with plates or weights for the duration of the exercise",
         alternate: false,
         muscles: [""],
@@ -488,7 +488,7 @@ const EXERCISES = [
         equipment: [],
     },
     {
-        videoSrc: "https://thumbs.gfycat.com/AgonizingBriefKissingbug-mobile.mp4",
+        videoSrc: "https://thumbs.gfycat.com/WelllitTotalArrowana-mobile.mp4",
         title: "Side Plank With Dip",
         description: "Start on your side with your feet together and one forearm directly below your shoulder. Contract your core and raise your hips until your body is in a straight line from head to feet. Then lower hips back towards ground. Repeat motion of straightening and bending for the allotted time for each set, then repeat on the other side.",
         alternate: true,
@@ -561,7 +561,7 @@ const EXERCISES = [
     },
     {
         videoSrc: "https://thumbs.gfycat.com/ComplicatedHeavenlyBovine-mobile.mp4",
-        title: "Corcadile Walks",
+        title: "Crocodile walks",
         description: "Start in a push up position, with your legs and arms shoulder-width apart. Lower yourself down until your torso is as low as it would get during a push up. You should aim to keep your upper body as low as possible throughout the exercise, bracing your core and glutes to ensure your posture is correct. Begin walking by bringing one knee up towards the elbow, simultaneously moving the opposite arm forward. Then repeat on the other side.",
         alternate: false,
         muscles: ["abs", "chest", "back", "triceps"],
