@@ -4,7 +4,7 @@ import { Router } from "@reach/router";
 import Dynamic from "containers/Dynamic";
 import { ThemeProvider } from "theme-ui";
 import HeaderNav from "components/HeaderNav";
-import { Box, Text } from "rebass";
+import { Box, Text, Flex } from "rebass";
 import theme from "./theme";
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
@@ -14,32 +14,30 @@ function App() {
     return (
         <Root>
             <ThemeProvider theme={theme}>
-                <HeaderNav />
-                <Box sx={{
-                    maxWidth: "1000px",
-                    mx: "auto",
-                    px: 3,
-                    minHeight: "calc(100vh - 120px)",
-                    paddingBottom: "2rem",
-                }}
-                >
-                    <React.Suspense fallback={<em>Loading...</em>}>
-                        <Router>
-                            <Dynamic path="dynamic" />
-                            <Routes path="*" />
-                        </Router>
-                    </React.Suspense>
-                </Box>
-                <footer style={{
-                    marginTop: "auto",
-                }}
-                >
-                    <Text fontSize={[10, 11, 12]} color="grey">
-                        &copy; Copyright 2020,
-                        <> <a href="https://github.com/nickjmiller">nickjmiller</a></>
-                        . All rights reserved.
-                    </Text>
-                </footer>
+                <Flex flexDirection="column" justifyContent="" height="100vh">
+                    <HeaderNav />
+                    <Box sx={{
+                        width: "80vw",
+                        mx: "auto",
+                        px: 3,
+                        flexGrow: 1,
+                    }}
+                    >
+                        <React.Suspense fallback={<em>Loading...</em>}>
+                            <Router>
+                                <Dynamic path="dynamic" />
+                                <Routes path="*" />
+                            </Router>
+                        </React.Suspense>
+                    </Box>
+                    <footer>
+                        <Text fontSize={[10, 11, 12]} color="grey">
+                            &copy; Copyright 2020,
+                            <> <a href="https://github.com/nickjmiller">nickjmiller</a></>
+                            . All rights reserved.
+                        </Text>
+                    </footer>
+                </Flex>
             </ThemeProvider>
         </Root>
     );

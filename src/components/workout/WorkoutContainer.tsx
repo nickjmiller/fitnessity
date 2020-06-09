@@ -113,7 +113,7 @@ export default class WorkoutContainer extends
         } else if (currentActivity === "set") {
             this.handleSetComplete(currentSets, workout[currentIndex], defaultRestTime, setTime);
         } else if (currentActivity === "rest") {
-            this.startCountdown(setTime);
+            this.startSet(setTime);
         } else if (currentActivity === "none") {
             this.startExercise(defaultSets, workout[currentIndex], setTime);
         }
@@ -262,6 +262,7 @@ export default class WorkoutContainer extends
                     <Flex
                         width={2 / 5}
                         flexDirection="column"
+                        justifyContent="space-between"
                     >
                         <Timer
                             initialTime={currentTimer + 10}
@@ -279,7 +280,7 @@ export default class WorkoutContainer extends
                                         </Text>
                                         <Button disabled={currentActivity !== "none"} variant="primary" onClick={this.setActivity(start, setTime)}>Go!</Button>
                                         <Button disabled={currentActivity === "complete"} variant="outline" onClick={() => setTime(10)}>Skip</Button>
-                                        <Button disabled={currentActivity === "complete"} variant="outline" onClick={this.pause(resume, pause, getTimerState)}>
+                                        <Button disabled={currentActivity === "complete"} variant={getTimerState() === "PAUSED" ? "secondary" : "outline"} onClick={this.pause(resume, pause, getTimerState)}>
                                             {getTimerState() === "PAUSED" ? "Resume" : "Pause"}
                                         </Button>
                                     </>
