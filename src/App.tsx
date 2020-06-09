@@ -17,10 +17,11 @@ function App() {
                 <Flex flexDirection="column" justifyContent="" height="100vh">
                     <HeaderNav />
                     <Box sx={{
-                        width: "80vw",
+                        maxWidth: 1024,
+                        width: "100%",
                         mx: "auto",
-                        px: 3,
                         flexGrow: 1,
+                        paddingBottom: "2em",
                     }}
                     >
                         <React.Suspense fallback={<em>Loading...</em>}>

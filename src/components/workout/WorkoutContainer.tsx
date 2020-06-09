@@ -23,7 +23,7 @@ type WorkoutContainerProps = {
 
 type WorkoutContainerState = {
     currentActivity: "set" | "rest" | "none" | "countdown" | "complete";
-    currentIndex: number;
+    currentExercise: Exercise;
     currentTimer: number;
     currentSets: number;
     defaultSets: number;
@@ -64,13 +64,19 @@ export default class WorkoutContainer extends
         super(props);
         this.state = {
             currentActivity: "none",
-            currentIndex: 0,
             currentTimer: 0,
             defaultSets: 3,
             defaultSetTime: 40,
             defaultRestTime: 60,
             currentSets: 3,
+            currentExercise: props.workout[0],
         };
+    }
+
+    shouldComponentUpdate(nextProps: WorkoutContainerProps, nextState: WorkoutContainerState) {
+        const { workout } = this.props;
+        return nextState !== this.state
+            || !!nextProps.workout.find((exercise, index) => workout[index] !== exercise);
     }
 
     pause = (resume: TimerControls["resume"], pause: TimerControls["pause"], getTimerState: TimerControls["getTimerState"]) => () => {
@@ -103,19 +109,16 @@ export default class WorkoutContainer extends
 
     setActivity = (start: TimerControls["start"], setTime: TimerControls["setTime"]) => () => {
         const {
-            currentActivity, currentIndex, currentSets, defaultSets, defaultRestTime,
+            currentActivity, currentExercise, currentSets, defaultSets, defaultRestTime,
         } = this.state;
-        const {
-            workout,
-        } = this.props;
         if (currentActivity === "countdown") {
             this.startSet(setTime);
         } else if (currentActivity === "set") {
-            this.handleSetComplete(currentSets, workout[currentIndex], defaultRestTime, setTime);
+            this.handleSetComplete(currentSets, currentExercise, defaultRestTime, setTime);
         } else if (currentActivity === "rest") {
             this.startSet(setTime);
         } else if (currentActivity === "none") {
-            this.startExercise(defaultSets, workout[currentIndex], setTime);
+            this.startExercise(defaultSets, currentExercise, setTime);
         }
         start();
     }
@@ -192,12 +195,13 @@ export default class WorkoutContainer extends
     }
 
     getNextExercise = () => {
-        const { currentIndex, defaultSets } = this.state;
+        const { currentExercise, defaultSets } = this.state;
         const { workout } = this.props;
+        const currentIndex = workout.findIndex((exercise) => exercise === currentExercise);
         if (currentIndex < workout.length - 1) {
             this.setState({
                 currentActivity: "none",
-                currentIndex: currentIndex + 1,
+                currentExercise: workout[currentIndex + 1],
                 currentSets: defaultSets,
             });
         } else {
@@ -208,20 +212,25 @@ export default class WorkoutContainer extends
         }
     }
 
+    reload = () => {
+        if (window) {
+            window.location.reload();
+        }
+    }
+
     render(): JSX.Element {
         const {
             currentActivity,
-            currentIndex,
+            currentExercise,
             currentSets,
             currentTimer,
             defaultSets,
             defaultSetTime,
             defaultRestTime,
         } = this.state;
-        const { workout } = this.props;
         return (
             <Box px="5vw">
-                <ExerciseInfo exercise={workout[currentIndex]} />
+                <ExerciseInfo exercise={currentExercise} />
                 <Flex justifyContent="space-between">
                     <Box width={2 / 5}>
                         <Text fontWeight="bold">{!(currentActivity === "none") ? `Sets Remaining: ${currentSets}` : ""}&nbsp;</Text>
@@ -279,10 +288,11 @@ export default class WorkoutContainer extends
                                             {this.activityTextMap[currentActivity].text}&nbsp;
                                         </Text>
                                         <Button disabled={currentActivity !== "none"} variant="primary" onClick={this.setActivity(start, setTime)}>Go!</Button>
-                                        <Button disabled={currentActivity === "complete"} variant="outline" onClick={() => setTime(10)}>Skip</Button>
-                                        <Button disabled={currentActivity === "complete"} variant={getTimerState() === "PAUSED" ? "secondary" : "outline"} onClick={this.pause(resume, pause, getTimerState)}>
+                                        <Button disabled={currentActivity === "complete" || currentActivity === "none"} variant="outline" onClick={() => setTime(10)}>Skip</Button>
+                                        <Button disabled={currentActivity === "complete" || currentActivity === "none"} variant={getTimerState() === "PAUSED" ? "secondary" : "outline"} onClick={this.pause(resume, pause, getTimerState)}>
                                             {getTimerState() === "PAUSED" ? "Resume" : "Pause"}
                                         </Button>
+                                        <Button sx={{ visibility: currentActivity === "complete" ? "visible" : "hidden" }} variant="primary" onClick={this.reload}>Start Over</Button>
                                     </>
                                 );
                             }}
