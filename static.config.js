@@ -54,4 +54,5 @@ export default {
         require.resolve("react-static-plugin-sitemap"),
     ],
     siteRoot: "https://www.fitnessity.org",
+    stagingSiteRoot: "http://127.0.0.1:3000",
 };
