@@ -22,6 +22,7 @@ function App() {
                         mx: "auto",
                         flexGrow: 1,
                         paddingBottom: "2em",
+                        px: 3,
                     }}
                     >
                         <React.Suspense fallback={<em>Loading...</em>}>

@@ -246,7 +246,7 @@ export default class WorkoutContainer extends
         const { workout } = this.props;
         const currentExercise = this.getCurrentExercise(workout, currentIndex);
         return (
-            <Box px="5vw">
+            <Box>
                 <ExerciseInfo exercise={currentExercise} />
                 <Flex justifyContent="space-between">
                     <Box width={2 / 5}>

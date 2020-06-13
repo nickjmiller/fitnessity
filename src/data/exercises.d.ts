@@ -1,10 +1,11 @@
-type Muscle = "abs" | "hamstrings" | "glutes" | "quads" | "balance" | "shoulder" | "stretch" | "back" | "chest" | "triceps" | "biceps";
+import { MuscleGroup } from "./MuscleMap";
+
 type Equipment = "bar" | "chair" | "block" | "ab roller" | "weight";
 
 export type Exercise = {
     title: string;
     description: string;
-    muscles: Muscle[];
+    muscles: MuscleGroup[];
     equipment: Equipment[];
     alternate: boolean;
     videoSrc: string;

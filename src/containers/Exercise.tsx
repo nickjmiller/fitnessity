@@ -5,6 +5,7 @@ import { Button, Text, Flex } from "rebass";
 import { Exercise } from "src/data/exercises";
 import WorkoutContainer from "components/workout/WorkoutContainer";
 import ExerciseInfo from "components/workout/ExerciseInfo";
+import { WORKOUT_MAP } from "../data/MuscleMap";
 
 export default () => {
     const { exercise }: { exercise: Exercise } = useRouteData();
@@ -18,7 +19,10 @@ export default () => {
             {workout
                 ? <WorkoutContainer workout={[exercise]} /> : <ExerciseInfo exercise={exercise} />}
             <Text>
-                Muscle Groups: {exercise.muscles.join(", ")}
+                Muscles: {exercise.muscles.join(", ")}
+            </Text>
+            <Text>
+                Muscle Groups: {[...new Set(exercise.muscles.map((muscle) => WORKOUT_MAP[muscle]))].join(", ")}
             </Text>
             {exercise.equipment.length
                 ? (
