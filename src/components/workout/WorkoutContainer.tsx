@@ -92,7 +92,7 @@ export default class WorkoutContainer extends
     }
 
     getCurrentExercise = memoize(
-        (workout, index) => workout[index],
+        (workout: Exercise[], index: number) => workout[index],
     );
 
     private stop = () => { };
@@ -252,7 +252,7 @@ export default class WorkoutContainer extends
                     <Box width={2 / 5}>
                         <Text fontSize={[14, 18, 22]} fontWeight="bold">{!(currentActivity === "none") ? `Sets Remaining: ${currentSets}` : ""}&nbsp;</Text>
                         <Label>
-                            Default Sets (applies next exercise):
+                            Default Sets:
                             {` ${defaultSets}`}
                         </Label>
                         <Slider

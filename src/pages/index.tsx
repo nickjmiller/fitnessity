@@ -8,7 +8,7 @@ import { WORKOUT_MAP, WorkoutGroup } from "../data/MuscleMap";
 import EXERCISES, { Exercise } from "../data/exercises";
 
 const shuffleExercises = (workoutPlan: WorkoutGroup[]) => {
-    let array = [...EXERCISES];
+    const array = [...EXERCISES];
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         const temp = array[i];
@@ -23,7 +23,7 @@ const shuffleExercises = (workoutPlan: WorkoutGroup[]) => {
             (e) => e.muscles.map((m) => WORKOUT_MAP[m]).includes(workoutPlan[0]),
         );
         workout.push(array[exerciseIndex]);
-        array = array.slice(exerciseIndex + 1);
+        array.splice(exerciseIndex, 1);
         workoutPlan.shift();
     }
 
