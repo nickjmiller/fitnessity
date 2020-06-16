@@ -6,6 +6,7 @@ export type Exercise = {
     title: string;
     description: string;
     muscles: MuscleGroup[];
+    targetMuscles: string[];
     equipment: Equipment[];
     alternate: boolean;
     videoSrc: string;
