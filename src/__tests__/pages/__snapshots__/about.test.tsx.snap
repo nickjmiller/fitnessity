@@ -1,0 +1,356 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="css-1cc7kk0"
+      >
+        <h2
+          class="css-aqrsgs"
+        >
+          About Us
+        </h2>
+        <h2
+          class="css-1n9ixb7"
+        >
+          Mission Statement
+        </h2>
+        <div
+          class="css-1v16l9p"
+        >
+          Our goal is to provide high quality information, backed by scientific investigation, to encourage a happier and healthier life through the application of physical activity.
+        </div>
+        <h2
+          class="css-1n9ixb7"
+        >
+          Our Story
+        </h2>
+        <div
+          class="css-1v16l9p"
+        >
+          Fitnessity has origins dating back to 2016, when the founders explored the idea of providing quality workout information through digital means. Since the beginning, the team at Fitnessity knew how important it was for people to have access to information that could simplify the journey to a healthier lifestyle. What we strive to offer is information that can help individuals properly execute a workout movement, backed by science, in order to improve their life through physical activity and exercise.
+        </div>
+        <h2
+          class="css-1n9ixb7"
+        >
+          The Team
+        </h2>
+        <div
+          class="css-1huhjh4"
+        >
+          <div
+            class="css-7ugkx4"
+          >
+            <img
+              class="css-1ithwm4"
+              src="https://i.imgur.com/LTM0quq.png"
+            />
+          </div>
+          <div
+            class="css-oz9yha"
+          >
+            <div
+              class="css-1w070cj"
+            >
+              Jeremy Andrews
+              :
+            </div>
+            <div
+              class="css-mx8wl8"
+            >
+              Doctor of Physical Therapy
+            </div>
+            Jeremy graduated from California State University, Sacramento with a degree in Kinesiology with an emphasis in Exercise Science. Jeremy received his Doctorate of Physical Therapy from Samuel Merritt University. Jeremy has interest in preventative medicine as well as utilization of technology to improve acute and chronic conditions.
+          </div>
+        </div>
+        <div
+          class="css-1huhjh4"
+        >
+          <div
+            class="css-1ynhxxq"
+          >
+            <img
+              class="css-1ithwm4"
+              src="https://i.imgur.com/BBO435D.png"
+            />
+          </div>
+          <div
+            class="css-oz9yha"
+          >
+            <div
+              class="css-1w070cj"
+            >
+              Nick Miller
+              :
+            </div>
+            <div
+              class="css-mx8wl8"
+            >
+              Masters of Computer Science
+            </div>
+            Nick graduated from UCLA with a degree in linguistics and went on to pursue higher education in computer science at California State University, Long Beach. Nick brings experience in current industry standards and full stack development. Through his passion for exercise and fitness, Nick has led the charge with creation and development of Fitnessity.
+          </div>
+        </div>
+        <div
+          class="css-1huhjh4"
+        >
+          <div
+            class="css-7ugkx4"
+          >
+            <img
+              class="css-1ithwm4"
+              src="https://i.imgur.com/BAPD97F.png"
+            />
+          </div>
+          <div
+            class="css-oz9yha"
+          >
+            <div
+              class="css-1w070cj"
+            >
+              Alex Corpuz
+              :
+            </div>
+            <div
+              class="css-mx8wl8"
+            >
+              Computer Science Student
+            </div>
+            Alex is currently a student at University of California, Irvine. Alex is currently pursuing a bachelors degree in computer science. Alex is interested in using his knowledge to help improve the lives of as many people as he can.
+          </div>
+        </div>
+        <div
+          class="css-1huhjh4"
+        >
+          <div
+            class="css-1ynhxxq"
+          >
+            <img
+              class="css-1ithwm4"
+              src="https://i.imgur.com/ocLaGrq.png"
+            />
+          </div>
+          <div
+            class="css-oz9yha"
+          >
+            <div
+              class="css-1w070cj"
+            >
+              Devon Johnson
+              :
+            </div>
+            <div
+              class="css-mx8wl8"
+            >
+              UC Davis, School of Medicine
+            </div>
+            Prior to medical school at UC Davis, Devon graduated from UC Berkeley with degrees in Integrative Biology and Psychology. After medical school, Devon plans to open a private practice utilizing technology such as virtual reality to further treatment plans.
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="css-1cc7kk0"
+    >
+      <h2
+        class="css-aqrsgs"
+      >
+        About Us
+      </h2>
+      <h2
+        class="css-1n9ixb7"
+      >
+        Mission Statement
+      </h2>
+      <div
+        class="css-1v16l9p"
+      >
+        Our goal is to provide high quality information, backed by scientific investigation, to encourage a happier and healthier life through the application of physical activity.
+      </div>
+      <h2
+        class="css-1n9ixb7"
+      >
+        Our Story
+      </h2>
+      <div
+        class="css-1v16l9p"
+      >
+        Fitnessity has origins dating back to 2016, when the founders explored the idea of providing quality workout information through digital means. Since the beginning, the team at Fitnessity knew how important it was for people to have access to information that could simplify the journey to a healthier lifestyle. What we strive to offer is information that can help individuals properly execute a workout movement, backed by science, in order to improve their life through physical activity and exercise.
+      </div>
+      <h2
+        class="css-1n9ixb7"
+      >
+        The Team
+      </h2>
+      <div
+        class="css-1huhjh4"
+      >
+        <div
+          class="css-7ugkx4"
+        >
+          <img
+            class="css-1ithwm4"
+            src="https://i.imgur.com/LTM0quq.png"
+          />
+        </div>
+        <div
+          class="css-oz9yha"
+        >
+          <div
+            class="css-1w070cj"
+          >
+            Jeremy Andrews
+            :
+          </div>
+          <div
+            class="css-mx8wl8"
+          >
+            Doctor of Physical Therapy
+          </div>
+          Jeremy graduated from California State University, Sacramento with a degree in Kinesiology with an emphasis in Exercise Science. Jeremy received his Doctorate of Physical Therapy from Samuel Merritt University. Jeremy has interest in preventative medicine as well as utilization of technology to improve acute and chronic conditions.
+        </div>
+      </div>
+      <div
+        class="css-1huhjh4"
+      >
+        <div
+          class="css-1ynhxxq"
+        >
+          <img
+            class="css-1ithwm4"
+            src="https://i.imgur.com/BBO435D.png"
+          />
+        </div>
+        <div
+          class="css-oz9yha"
+        >
+          <div
+            class="css-1w070cj"
+          >
+            Nick Miller
+            :
+          </div>
+          <div
+            class="css-mx8wl8"
+          >
+            Masters of Computer Science
+          </div>
+          Nick graduated from UCLA with a degree in linguistics and went on to pursue higher education in computer science at California State University, Long Beach. Nick brings experience in current industry standards and full stack development. Through his passion for exercise and fitness, Nick has led the charge with creation and development of Fitnessity.
+        </div>
+      </div>
+      <div
+        class="css-1huhjh4"
+      >
+        <div
+          class="css-7ugkx4"
+        >
+          <img
+            class="css-1ithwm4"
+            src="https://i.imgur.com/BAPD97F.png"
+          />
+        </div>
+        <div
+          class="css-oz9yha"
+        >
+          <div
+            class="css-1w070cj"
+          >
+            Alex Corpuz
+            :
+          </div>
+          <div
+            class="css-mx8wl8"
+          >
+            Computer Science Student
+          </div>
+          Alex is currently a student at University of California, Irvine. Alex is currently pursuing a bachelors degree in computer science. Alex is interested in using his knowledge to help improve the lives of as many people as he can.
+        </div>
+      </div>
+      <div
+        class="css-1huhjh4"
+      >
+        <div
+          class="css-1ynhxxq"
+        >
+          <img
+            class="css-1ithwm4"
+            src="https://i.imgur.com/ocLaGrq.png"
+          />
+        </div>
+        <div
+          class="css-oz9yha"
+        >
+          <div
+            class="css-1w070cj"
+          >
+            Devon Johnson
+            :
+          </div>
+          <div
+            class="css-mx8wl8"
+          >
+            UC Davis, School of Medicine
+          </div>
+          Prior to medical school at UC Davis, Devon graduated from UC Berkeley with degrees in Integrative Biology and Psychology. After medical school, Devon plans to open a private practice utilizing technology such as virtual reality to further treatment plans.
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

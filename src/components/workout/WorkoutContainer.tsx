@@ -1,14 +1,16 @@
 /* eslint-disable no-await-in-loop */
 import React from "react";
-import memoize from "memoize-one";
 import {
-    Box, Button, Flex, Text,
+    Box, Button, Flex, Text, Heading,
 } from "rebass";
 import { Slider, Label } from "@rebass/forms";
 import Timer, { TimerControls } from "react-compound-timer";
+import { useDispatch, useSelector } from "react-redux";
 import ExerciseInfo from "./ExerciseInfo";
 // eslint-disable-next-line
 import { Exercise } from "../../data/exercises";
+import { incrementIndex, resetIndex } from "../../features/workout/workoutSlice";
+import { RootState } from "../../app/rootReducer";
 
 let UIfx: any;
 
@@ -19,12 +21,12 @@ if (typeof document !== "undefined") {
 }
 
 type WorkoutContainerProps = {
-    workout: Exercise[]
+    currentExercise: Exercise;
+    dispatch: any;
 }
 
 type WorkoutContainerState = {
-    currentActivity: "set" | "rest" | "none" | "countdown" | "complete";
-    currentIndex: number;
+    currentActivity: "set" | "rest" | "none" | "countdown";
     currentSets: number;
     defaultSets: number;
     defaultSetTime: number;
@@ -39,7 +41,7 @@ type ActivityMap = {
     }
 }
 
-export default class WorkoutContainer extends
+class WorkoutContainer extends
     React.Component<WorkoutContainerProps, WorkoutContainerState> {
     private countdown = UIfx ? new UIfx(`${window.location.origin}/sounds/countdown.mp3`) : undefined;
 
@@ -66,10 +68,6 @@ export default class WorkoutContainer extends
             color: "black",
             changeState: (setTime) => this.startWorkout(setTime),
         },
-        complete: {
-            text: "Workout Complete!",
-            changeState: () => { },
-        },
     }
 
     constructor(props: WorkoutContainerProps) {
@@ -80,20 +78,15 @@ export default class WorkoutContainer extends
             defaultSetTime: 40,
             defaultRestTime: 60,
             currentSets: 3,
-            currentIndex: 0,
         };
     }
 
     componentDidUpdate(newProps: WorkoutContainerProps) {
-        const { workout } = this.props;
-        if (newProps.workout !== workout) {
+        const { currentExercise } = this.props;
+        if (newProps.currentExercise !== currentExercise) {
             this.stop();
         }
     }
-
-    getCurrentExercise = memoize(
-        (workout: Exercise[], index: number) => workout[index],
-    );
 
     private stop = () => { };
 
@@ -107,8 +100,8 @@ export default class WorkoutContainer extends
     }
 
     handleSetComplete = (setTime: TimerControls["setTime"]) => {
-        const { currentSets, currentIndex, defaultRestTime } = this.state;
-        const { workout } = this.props;
+        const { currentSets, defaultRestTime } = this.state;
+        const { currentExercise } = this.props;
         if (currentSets === 1) {
             this.getNextExercise();
             return;
@@ -116,7 +109,7 @@ export default class WorkoutContainer extends
         this.setState({
             currentSets: currentSets - 1,
         });
-        if (workout[currentIndex].alternate && !(currentSets % 2)) {
+        if (currentExercise.alternate && !(currentSets % 2)) {
             this.startCountdown(setTime);
         } else {
             this.timerDone.play();
@@ -194,10 +187,10 @@ export default class WorkoutContainer extends
     }
 
     startWorkout = (setTime: TimerControls["setTime"]) => {
-        const { defaultSets, currentIndex } = this.state;
-        const { workout } = this.props;
+        const { defaultSets } = this.state;
+        const { currentExercise } = this.props;
         let sets = defaultSets;
-        if (sets % 2 && workout[currentIndex].alternate) {
+        if (sets % 2 && currentExercise.alternate) {
             sets++;
         }
         this.setState({
@@ -207,26 +200,24 @@ export default class WorkoutContainer extends
     }
 
     getNextExercise = () => {
-        const { currentIndex, defaultSets } = this.state;
-        const { workout } = this.props;
-        if (currentIndex < workout.length - 1) {
-            this.setState({
-                currentActivity: "none",
-                currentIndex: currentIndex + 1,
-                currentSets: defaultSets,
-            });
-        } else {
-            this.setState({
-                currentActivity: "complete",
-                currentSets: 0,
-            });
-        }
+        const { defaultSets } = this.state;
+        const { dispatch } = this.props;
+        this.setState({
+            currentActivity: "none",
+            currentSets: defaultSets,
+        });
+        dispatch(incrementIndex());
     }
 
     restart = () => {
+        const { dispatch } = this.props;
+        this.stopActivity();
+        dispatch(resetIndex());
+    }
+
+    stopActivity = () => {
         this.setState({
             currentActivity: "none",
-            currentIndex: 0,
         });
     }
 
@@ -237,17 +228,16 @@ export default class WorkoutContainer extends
     render(): JSX.Element {
         const {
             currentActivity,
-            currentIndex,
             currentSets,
             defaultSets,
             defaultSetTime,
             defaultRestTime,
         } = this.state;
-        const { workout } = this.props;
-        const currentExercise = this.getCurrentExercise(workout, currentIndex);
+        const { currentExercise } = this.props;
         return (
             <Box>
-                <ExerciseInfo exercise={currentExercise} />
+                {currentExercise ? <ExerciseInfo exercise={currentExercise} />
+                    : <Heading>Workout Complete!</Heading>}
                 <Flex justifyContent="space-between">
                     <Box width={2 / 5}>
                         <Text fontSize={[14, 18, 22]} fontWeight="bold">{!(currentActivity === "none") ? `Sets Remaining: ${currentSets}` : ""}&nbsp;</Text>
@@ -293,7 +283,7 @@ export default class WorkoutContainer extends
                         <Timer
                             direction="backward"
                             startImmediately={false}
-                            onStop={this.restart}
+                            onStop={this.stopActivity}
                         >
                             {({
                                 pause, resume, start, setTime, setCheckpoints, getTimerState, stop,
@@ -305,12 +295,12 @@ export default class WorkoutContainer extends
                                         <Text fontSize={[14, 18, 22]} color={this.activityTextMap[currentActivity].color} fontWeight="bold">
                                             {this.activityTextMap[currentActivity].text}&nbsp;
                                         </Text>
-                                        <Button disabled={currentActivity !== "none"} variant="primary" onClick={this.setActivity(start, setTime)}>Go!</Button>
-                                        <Button disabled={currentActivity === "complete" || currentActivity === "none"} variant="outline" onClick={this.skip(setTime)}>Skip</Button>
-                                        <Button disabled={currentActivity === "complete" || currentActivity === "none"} variant={getTimerState() === "PAUSED" ? "secondary" : "outline"} onClick={this.pause(resume, pause, getTimerState)}>
+                                        <Button disabled={currentActivity !== "none" || !currentExercise} variant="primary" onClick={this.setActivity(start, setTime)}>Go!</Button>
+                                        <Button disabled={!currentExercise || currentActivity === "none"} variant="outline" onClick={this.skip(setTime)}>Skip</Button>
+                                        <Button disabled={!currentExercise || currentActivity === "none"} variant={getTimerState() === "PAUSED" ? "secondary" : "outline"} onClick={this.pause(resume, pause, getTimerState)}>
                                             {getTimerState() === "PAUSED" ? "Resume" : "Pause"}
                                         </Button>
-                                        <Button sx={{ visibility: currentActivity === "complete" ? "visible" : "hidden" }} variant="primary" onClick={this.restart}>Start Over</Button>
+                                        <Button sx={{ visibility: !currentExercise ? "visible" : "hidden" }} variant="primary" onClick={this.restart}>Start Over</Button>
                                     </>
                                 );
                             }}
@@ -321,3 +311,10 @@ export default class WorkoutContainer extends
         );
     }
 }
+
+export default () => {
+    const currentExercise = useSelector(
+        (state: RootState) => state.workout.exercises[state.workout.currentIndex],
+    );
+    return <WorkoutContainer dispatch={useDispatch()} currentExercise={currentExercise} />;
+};

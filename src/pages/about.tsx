@@ -2,7 +2,8 @@ import React from "react";
 import {
     Heading, Text, Flex,
 } from "rebass";
-import Bio, { Contributor } from "components/Bio";
+import Bio, { Contributor } from "../components/Bio";
+
 
 const CONTRIBUTORS: Contributor[] = [
     {
@@ -74,7 +75,13 @@ export default () => (
         </Text>
         <Heading py={3} fontSize={[20, 24, 30]}>The Team</Heading>
         {CONTRIBUTORS.map(
-            (contributor, index) => <Bio pictureFirst={!(index % 2)} contributor={contributor} />,
+            (contributor, index) => (
+                <Bio
+                    pictureFirst={!(index % 2)}
+                    key={contributor.name}
+                    contributor={contributor}
+                />
+            ),
         )}
     </Flex>
 );
