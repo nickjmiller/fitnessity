@@ -61,8 +61,8 @@ export default ({ workout }: { workout: Exercise[] }) => {
                 }}
             >
 
-                <Button fontSize={[8, 10, 12]} variant="primary" onClick={() => setHide(!hide)}>{hide ? "Show Workout" : "Hide"}</Button>
-                <Text px={4} fontSize={[8, 10, 12]}>
+                <Button variant="primary" onClick={() => setHide(!hide)}>{hide ? "Show Workout" : "Hide"}</Button>
+                <Text px={4}>
                     {!hide ? workout.map((exercise) => exercise.title).join(", ") : null}
                 </Text>
             </div>
