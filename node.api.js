@@ -8,10 +8,13 @@ export default (_pluginOptions) => ({
             clientsClaim: true,
             skipWaiting: true,
             runtimeCaching: [{
-                urlPattern: new RegExp("/"),
+                urlPattern: new RegExp("/$"),
                 handler: "NetworkFirst",
             }, {
-                urlPattern: new RegExp("https://thumbs.gfycat.com/*.mp4"),
+                urlPattern: new RegExp("https://thumbs.gfycat.com/*"),
+                handler: "CacheFirst",
+            }, {
+                urlPattern: new RegExp("https://i.imgur.com/*"),
                 handler: "CacheFirst",
             }],
         }));

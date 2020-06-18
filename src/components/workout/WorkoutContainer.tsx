@@ -10,7 +10,7 @@ import ExerciseInfo from "./ExerciseInfo";
 // eslint-disable-next-line
 import { Exercise } from "../../data/exercises";
 import {
-    incrementIndex, resetIndex, setDefaultRestTime, setDefaultSets, setDefaultSetTime,
+    incrementIndex, resetIndex, setDefaultRestTime, setDefaultSets, setDefaultSetTime, setWorkout,
 } from "../../features/workout/workoutSlice";
 import { RootState } from "../../app/rootReducer";
 
@@ -78,6 +78,13 @@ class WorkoutContainer extends
             currentActivity: "none",
             currentSets: 3,
         };
+    }
+
+    componentDidMount() {
+        const { currentExercise, dispatch } = this.props;
+        if (!currentExercise) {
+            dispatch(setWorkout(["Lower", "Upper", "Lower", "Upper", "Core"]));
+        }
     }
 
     componentDidUpdate(newProps: WorkoutContainerProps) {

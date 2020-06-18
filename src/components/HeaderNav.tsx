@@ -3,6 +3,7 @@ import { Link } from "@reach/router";
 import { jsx } from "theme-ui";
 import { Flex, Button } from "rebass";
 import ExerciseListModal from "./ExerciseListModal";
+import DarkModeToggle from "./DarkModeToggle";
 
 export default () => (
     <header
@@ -56,6 +57,7 @@ export default () => (
                 justifyContent: "flex-start",
             }}
         >
+            <DarkModeToggle />
             <ExerciseListModal />
         </div>
         <div

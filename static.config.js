@@ -17,6 +17,7 @@ export default {
                     <title>Fitnessity</title>
                     <meta charSet="UTF-8" />
                     <meta name="theme-color" content="#3333ee" />
+                    <meta name="description" content="Fitnessity: an at-home workout generator." />
                     <link rel="apple-touch-icon" href="/touch.png" />
                     <link rel="manifest" href="manifest.webmanifest" />
                     <noscript>
