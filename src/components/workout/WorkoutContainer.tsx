@@ -186,7 +186,7 @@ class WorkoutContainer extends
         const { currentExercise, defaultSets } = this.props;
         let sets = defaultSets;
         if (sets % 2 && currentExercise.alternate) {
-            sets++;
+            sets *= 2;
         }
         this.setState({
             currentSets: sets,
@@ -238,7 +238,7 @@ class WorkoutContainer extends
                     <Box width={2 / 5}>
                         <Text fontSize={[14, 18, 22]} fontWeight="bold">{!(currentActivity === "none") ? `Sets Remaining: ${currentSets}` : ""}&nbsp;</Text>
                         <Label>
-                            Default Sets:
+                            Sets:
                             {` ${defaultSets}`}
                         </Label>
                         <Slider
@@ -249,7 +249,7 @@ class WorkoutContainer extends
                             max="12"
                         />
                         <Label>
-                            Default Set Time:
+                            Set Time:
                             {` ${defaultSetTime}s`}
                         </Label>
                         <Slider
@@ -260,7 +260,7 @@ class WorkoutContainer extends
                             max="120"
                         />
                         <Label>
-                            Default Rest:
+                            Rest Time:
                             {` ${defaultRestTime}s`}
                         </Label>
                         <Slider

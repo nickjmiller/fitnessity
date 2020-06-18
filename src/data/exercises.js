@@ -411,7 +411,7 @@ const EXERCISES = [
         videoSrc: "https://thumbs.gfycat.com/ImaginativeDarkBarnacle-mobile.mp4",
         title: "Lunge To Over Head Press",
         description: "Stand tall with your feet hip distance apart and weights next to shoulders. Step forward with one foot behind you keeping heel off the ground. Bending knees, lower your body to floor return to start position and press weights overhead. Repeat movement stepping forward with opposite foot.",
-        alternate: true,
+        alternate: false,
         muscles: ["Gluteus Maximus", "Gluteus Medius", "Vastus Lateralis", "Vastus Medialis", "Vastus Intermedius", "Rectus Femoris", "Deltoid"],
         equipment: ["weight"],
     },

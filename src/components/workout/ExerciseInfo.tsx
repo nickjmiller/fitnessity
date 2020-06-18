@@ -18,7 +18,7 @@ const ExerciseInfo: React.FC<ExerciseInfoProps> = ({ exercise }) => {
                 fontSize={[28, 33, 48]}
                 color="primary"
             >
-                {alternate ? "(Alternate) " : ""}{title}
+                {title}{alternate ? " (Switching Sides)" : ""}
             </Heading>
             <Text
                 fontSize={[12, 17, 22]}
