@@ -9,7 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import ExerciseInfo from "./ExerciseInfo";
 // eslint-disable-next-line
 import { Exercise } from "../../data/exercises";
-import { incrementIndex, resetIndex } from "../../features/workout/workoutSlice";
+import {
+    incrementIndex, resetIndex, setDefaultRestTime, setDefaultSets, setDefaultSetTime,
+} from "../../features/workout/workoutSlice";
 import { RootState } from "../../app/rootReducer";
 
 let UIfx: any;
@@ -22,15 +24,15 @@ if (typeof document !== "undefined") {
 
 type WorkoutContainerProps = {
     currentExercise: Exercise;
+    defaultSets: number;
+    defaultSetTime: number;
+    defaultRestTime: number;
     dispatch: any;
 }
 
 type WorkoutContainerState = {
     currentActivity: "set" | "rest" | "none" | "countdown";
     currentSets: number;
-    defaultSets: number;
-    defaultSetTime: number;
-    defaultRestTime: number;
 }
 
 type ActivityMap = {
@@ -74,9 +76,6 @@ class WorkoutContainer extends
         super(props);
         this.state = {
             currentActivity: "none",
-            defaultSets: 3,
-            defaultSetTime: 40,
-            defaultRestTime: 60,
             currentSets: 3,
         };
     }
@@ -100,8 +99,8 @@ class WorkoutContainer extends
     }
 
     handleSetComplete = (setTime: TimerControls["setTime"]) => {
-        const { currentSets, defaultRestTime } = this.state;
-        const { currentExercise } = this.props;
+        const { currentSets } = this.state;
+        const { currentExercise, defaultRestTime } = this.props;
         if (currentSets === 1) {
             this.getNextExercise();
             return;
@@ -151,22 +150,19 @@ class WorkoutContainer extends
         ]);
     }
 
-    setDefaultSets = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({
-            defaultSets: parseInt(event.target.value, 10),
-        });
+    setDefaultSetCount = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { dispatch } = this.props;
+        dispatch(setDefaultSets(parseInt(event.target.value, 10)));
     }
 
     setDefaultTimer = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({
-            defaultSetTime: parseInt(event.target.value, 10),
-        });
+        const { dispatch } = this.props;
+        dispatch(setDefaultSetTime(parseInt(event.target.value, 10)));
     }
 
     setDefaultRest = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({
-            defaultRestTime: parseInt(event.target.value, 10),
-        });
+        const { dispatch } = this.props;
+        dispatch(setDefaultRestTime(parseInt(event.target.value, 10)));
     }
 
     startCountdown = (setTime: TimerControls["setTime"]) => {
@@ -178,7 +174,7 @@ class WorkoutContainer extends
     }
 
     startSet = (setTime: TimerControls["setTime"]) => {
-        const { defaultSetTime } = this.state;
+        const { defaultSetTime } = this.props;
         this.start.play();
         this.setState({
             currentActivity: "set",
@@ -187,8 +183,7 @@ class WorkoutContainer extends
     }
 
     startWorkout = (setTime: TimerControls["setTime"]) => {
-        const { defaultSets } = this.state;
-        const { currentExercise } = this.props;
+        const { currentExercise, defaultSets } = this.props;
         let sets = defaultSets;
         if (sets % 2 && currentExercise.alternate) {
             sets++;
@@ -200,8 +195,7 @@ class WorkoutContainer extends
     }
 
     getNextExercise = () => {
-        const { defaultSets } = this.state;
-        const { dispatch } = this.props;
+        const { dispatch, defaultSets } = this.props;
         this.setState({
             currentActivity: "none",
             currentSets: defaultSets,
@@ -229,11 +223,13 @@ class WorkoutContainer extends
         const {
             currentActivity,
             currentSets,
+        } = this.state;
+        const {
+            currentExercise,
             defaultSets,
             defaultSetTime,
             defaultRestTime,
-        } = this.state;
-        const { currentExercise } = this.props;
+        } = this.props;
         return (
             <Box>
                 {currentExercise ? <ExerciseInfo exercise={currentExercise} />
@@ -248,7 +244,7 @@ class WorkoutContainer extends
                         <Slider
                             name="Set Length"
                             defaultValue={defaultSets}
-                            onChange={this.setDefaultSets}
+                            onChange={this.setDefaultSetCount}
                             min="1"
                             max="12"
                         />
@@ -284,6 +280,7 @@ class WorkoutContainer extends
                             direction="backward"
                             startImmediately={false}
                             onStop={this.stopActivity}
+                            lastUnit="s"
                         >
                             {({
                                 pause, resume, start, setTime, setCheckpoints, getTimerState, stop,
@@ -313,8 +310,21 @@ class WorkoutContainer extends
 }
 
 export default () => {
+    const {
+        defaultSets,
+        defaultSetTime,
+        defaultRestTime,
+    } = useSelector((state: RootState) => state.workout);
     const currentExercise = useSelector(
         (state: RootState) => state.workout.exercises[state.workout.currentIndex],
     );
-    return <WorkoutContainer dispatch={useDispatch()} currentExercise={currentExercise} />;
+    return (
+        <WorkoutContainer
+            defaultSets={defaultSets}
+            defaultSetTime={defaultSetTime}
+            defaultRestTime={defaultRestTime}
+            dispatch={useDispatch()}
+            currentExercise={currentExercise}
+        />
+    );
 };

@@ -3,7 +3,7 @@ import { Root, Routes, addPrefetchExcludes } from "react-static";
 import { Router } from "@reach/router";
 import Dynamic from "containers/Dynamic";
 import { ThemeProvider } from "theme-ui";
-import HeaderNav from "components/HeaderNav";
+import NavWrapper from "components/NavWrapper";
 import { Box, Text, Flex } from "rebass";
 import { Provider } from "react-redux";
 import theme from "./theme";
@@ -19,7 +19,7 @@ function App() {
             <ThemeProvider theme={theme}>
                 <Provider store={store}>
                     <Flex flexDirection="column" justifyContent="" height="100vh">
-                        <HeaderNav />
+                        <NavWrapper />
                         <Box sx={{
                             maxWidth: 1024,
                             width: "100%",

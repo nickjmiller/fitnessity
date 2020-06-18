@@ -33,11 +33,17 @@ const INITIAL_WORKOUT = shuffleExercises([...DEFAULT_WORKOUT_PLAN]);
 
 type WorkoutState = {
     currentIndex: number;
+    defaultSets: number;
+    defaultSetTime: number;
+    defaultRestTime: number;
     exercises: Exercise[];
 }
 
 const initialState: WorkoutState = {
     currentIndex: 0,
+    defaultSets: 3,
+    defaultSetTime: 40,
+    defaultRestTime: 60,
     exercises: INITIAL_WORKOUT,
 };
 
@@ -59,12 +65,24 @@ const workoutSlice = createSlice({
         resetIndex(state) {
             state.currentIndex = 0;
         },
+        setDefaultSets(state, action: PayloadAction<number>) {
+            state.defaultSets = action.payload;
+        },
+        setDefaultSetTime(state, action: PayloadAction<number>) {
+            state.defaultSetTime = action.payload;
+        },
+        setDefaultRestTime(state, action: PayloadAction<number>) {
+            state.defaultRestTime = action.payload;
+        },
     },
 });
 
 export const {
     incrementIndex,
     resetIndex,
+    setDefaultRestTime,
+    setDefaultSets,
+    setDefaultSetTime,
     setSingleExercise,
     setWorkout,
 } = workoutSlice.actions;
