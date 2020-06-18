@@ -4,7 +4,7 @@ import rootReducer from "../rootReducer";
 
 const STORAGE = "__USER__SETTINGS__";
 
-const preloadedState = localStorage.getItem(STORAGE)
+const preloadedState = (typeof document !== "undefined" && localStorage.getItem(STORAGE))
     ? JSON.parse(localStorage.getItem(STORAGE)) : {};
 
 const store = configureStore({
@@ -13,7 +13,9 @@ const store = configureStore({
 });
 
 store.subscribe(() => {
-    localStorage.setItem(STORAGE, JSON.stringify({ workout: store.getState().workout }));
+    if (typeof document !== "undefined") {
+        localStorage.setItem(STORAGE, JSON.stringify({ workout: store.getState().workout }));
+    }
 });
 
 if (module.hot) {
