@@ -1,6 +1,8 @@
 import { system } from "@theme-ui/presets";
+import { lighten } from "@theme-ui/color";
 
-export default {
+const theme = {
+    useColorSchemeMediaQuery: true,
     ...system,
     buttons: {
         primary: {
@@ -28,7 +30,7 @@ export default {
         outline: {
             backgroundColor: "background",
             border: "2px solid",
-            color: "primary",
+            color: "tertiary",
             "&:hover": {
                 backgroundColor: "gray",
             },
@@ -40,3 +42,17 @@ export default {
         },
     },
 };
+
+theme.colors.tertiary = theme.colors.secondary;
+
+theme.colors.modes = {
+    dark: {
+        text: "#fff",
+        background: "#23272a",
+        primary: theme.colors.primary,
+        secondary: lighten("primary", 0.2)(theme),
+        tertiary: "#fff",
+    },
+};
+
+export default theme;

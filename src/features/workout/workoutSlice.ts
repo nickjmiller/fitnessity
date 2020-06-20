@@ -37,6 +37,7 @@ type WorkoutState = {
     defaultSetTime: number;
     defaultRestTime: number;
     exercises: Exercise[];
+    defaultWorkoutPlan: string;
 }
 
 const initialState: WorkoutState = {
@@ -45,7 +46,15 @@ const initialState: WorkoutState = {
     defaultSetTime: 40,
     defaultRestTime: 60,
     exercises: INITIAL_WORKOUT,
+    defaultWorkoutPlan: "Balanced",
 };
+
+export const WORKOUT_PLANS: { [key: string]: WorkoutGroup[] } = {
+    Balanced: ["Lower", "Upper", "Lower", "Upper", "Core"],
+    Upper: ["Upper", "Upper", "Upper", "Upper", "Core"],
+    Lower: ["Lower", "Lower", "Lower", "Lower", "Core"],
+};
+
 
 const workoutSlice = createSlice({
     name: "workout",
@@ -74,6 +83,13 @@ const workoutSlice = createSlice({
         setDefaultRestTime(state, action: PayloadAction<number>) {
             state.defaultRestTime = action.payload;
         },
+        setDefaultWorkout(state, action: PayloadAction<string>) {
+            state.defaultWorkoutPlan = action.payload;
+        },
+        startDefaultWorkout(state) {
+            state.exercises = shuffleExercises(WORKOUT_PLANS[state.defaultWorkoutPlan]);
+            state.currentIndex = 0;
+        },
     },
 });
 
@@ -85,6 +101,8 @@ export const {
     setDefaultSetTime,
     setSingleExercise,
     setWorkout,
+    setDefaultWorkout,
+    startDefaultWorkout,
 } = workoutSlice.actions;
 
 export default workoutSlice.reducer;

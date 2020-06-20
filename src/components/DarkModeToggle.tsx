@@ -1,19 +1,22 @@
 import React from "react";
 import { useColorMode } from "theme-ui";
-import { Box, Button } from "rebass";
+import { Box } from "rebass";
+import { Switch, Label } from "@rebass/forms";
 
 export default () => {
     const [colorMode, setColorMode] = useColorMode();
     return (
         <Box>
-            <Button
-                mr={2}
-                onClick={() => {
-                    setColorMode(colorMode === "default" ? "dark" : "default");
-                }}
-            >
-                {colorMode === "default" ? "Dark" : "Light"}
-            </Button>
+            <Label>
+                <Switch
+                    id="dark"
+                    name="dark"
+                    checked={colorMode === "dark"}
+                    onClick={() => {
+                        setColorMode(colorMode === "default" ? "dark" : "default");
+                    }}
+                /> Toggle Dark Mode
+            </Label>
         </Box>
     );
 };

@@ -1,18 +1,16 @@
 import React from "react";
 import Modal from "react-modal";
-import { useSelector } from "react-redux";
-import { RootState } from "src/app/rootReducer";
 import {
-    Flex, Box, Text, Button,
+    Box, Button,
 } from "rebass";
 import { useThemeUI } from "theme-ui";
 import { alpha, shade, darken } from "@theme-ui/color";
+import ExerciseList from "./ExerciseList";
 
 Modal.setAppElement("#root");
 
 
 export default () => {
-    const { currentIndex, exercises } = useSelector((state: RootState) => state.workout);
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const { theme } = useThemeUI();
     const backgroundColor = darken("background", 0)(theme);
@@ -49,24 +47,7 @@ export default () => {
                 shouldCloseOnOverlayClick
                 onRequestClose={closeModal}
             >
-                <Flex flexDirection="column">
-                    {exercises.map((exercise, index) => (
-                        <Box>
-                            <Text
-                                color={
-                                    index === currentIndex ? "green" : ""
-                                }
-                                sx={{
-                                    textDecoration: index < currentIndex ? "line-through" : "",
-                                }}
-                            >{`${index + 1} - ${exercise.title}`}
-                            </Text>
-                        </Box>
-                    ))}
-                    <Box margin="auto" paddingTop={2}>
-                        <Button onClick={closeModal}>Close</Button>
-                    </Box>
-                </Flex>
+                <ExerciseList onClose={closeModal} />
             </Modal>
         </Box>
     );

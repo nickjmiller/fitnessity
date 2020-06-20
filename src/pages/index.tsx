@@ -9,7 +9,7 @@ import { setWorkout } from "../features/workout/workoutSlice";
 
 export default () => {
     const dispatch = useDispatch();
-    const [hidden, setHidden] = useState(false);
+    const [hidden, setHidden] = useState(true);
     return (
         <>
             <WorkoutContainer />

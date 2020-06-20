@@ -3,14 +3,14 @@ import React from "react";
 import {
     Box, Button, Flex, Text, Heading,
 } from "rebass";
-import { Slider, Label } from "@rebass/forms";
 import Timer, { TimerControls } from "react-compound-timer";
 import { useDispatch, useSelector } from "react-redux";
+import WorkoutSettings from "components/WorkoutSettings";
 import ExerciseInfo from "./ExerciseInfo";
 // eslint-disable-next-line
 import { Exercise } from "../../data/exercises";
 import {
-    incrementIndex, resetIndex, setDefaultRestTime, setDefaultSets, setDefaultSetTime, setWorkout,
+    incrementIndex, resetIndex, startDefaultWorkout,
 } from "../../features/workout/workoutSlice";
 import { RootState } from "../../app/rootReducer";
 
@@ -83,7 +83,7 @@ class WorkoutContainer extends
     componentDidMount() {
         const { currentExercise, dispatch } = this.props;
         if (!currentExercise) {
-            dispatch(setWorkout(["Lower", "Upper", "Lower", "Upper", "Core"]));
+            dispatch(startDefaultWorkout());
         }
     }
 
@@ -157,21 +157,6 @@ class WorkoutContainer extends
         ]);
     }
 
-    setDefaultSetCount = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { dispatch } = this.props;
-        dispatch(setDefaultSets(parseInt(event.target.value, 10)));
-    }
-
-    setDefaultTimer = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { dispatch } = this.props;
-        dispatch(setDefaultSetTime(parseInt(event.target.value, 10)));
-    }
-
-    setDefaultRest = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { dispatch } = this.props;
-        dispatch(setDefaultRestTime(parseInt(event.target.value, 10)));
-    }
-
     startCountdown = (setTime: TimerControls["setTime"]) => {
         this.setState({
             currentActivity: "countdown",
@@ -233,9 +218,6 @@ class WorkoutContainer extends
         } = this.state;
         const {
             currentExercise,
-            defaultSets,
-            defaultSetTime,
-            defaultRestTime,
         } = this.props;
         return (
             <Box>
@@ -244,39 +226,7 @@ class WorkoutContainer extends
                 <Flex justifyContent="space-between">
                     <Box width={2 / 5}>
                         <Text fontSize={[14, 18, 22]} fontWeight="bold">{!(currentActivity === "none") ? `Sets Remaining: ${currentSets}` : ""}&nbsp;</Text>
-                        <Label>
-                            Sets:
-                            {` ${defaultSets}`}
-                        </Label>
-                        <Slider
-                            name="Set Length"
-                            defaultValue={defaultSets}
-                            onChange={this.setDefaultSetCount}
-                            min="1"
-                            max="12"
-                        />
-                        <Label>
-                            Set Time:
-                            {` ${defaultSetTime}s`}
-                        </Label>
-                        <Slider
-                            name="Set Length"
-                            defaultValue={defaultSetTime}
-                            onChange={this.setDefaultTimer}
-                            min="5"
-                            max="120"
-                        />
-                        <Label>
-                            Rest Time:
-                            {` ${defaultRestTime}s`}
-                        </Label>
-                        <Slider
-                            name="Rest Length"
-                            defaultValue={defaultRestTime}
-                            onChange={this.setDefaultRest}
-                            min="5"
-                            max="120"
-                        />
+                        <WorkoutSettings />
                     </Box>
                     <Flex
                         width={2 / 5}
