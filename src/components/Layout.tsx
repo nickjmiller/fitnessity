@@ -16,7 +16,7 @@ if (typeof window !== "undefined") {
 
 export default () => {
     let sidebarDocked = mql && mql.matches;
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(sidebarDocked);
     useEffect(() => {
         if (mql) {
             mql.addListener(() => {
