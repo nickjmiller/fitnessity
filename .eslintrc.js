@@ -32,6 +32,7 @@ module.exports = {
         "react/jsx-indent-props": "off",
         "react/jsx-one-expression-per-line": "off",
         "react/prop-types": "off",
+        "react/require-default-props": "off",
         "no-plusplus": "off",
         semi: ["error", "always"],
         quotes: ["error", "double"],

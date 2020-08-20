@@ -5,7 +5,6 @@ import { Box, Heading } from "rebass";
 
 // TODO: Export to shared types
 
-
 export default () => {
     const { EXERCISES } = useRouteData();
     return (

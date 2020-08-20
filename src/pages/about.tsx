@@ -4,7 +4,6 @@ import {
 } from "rebass";
 import Bio, { Contributor } from "../components/Bio";
 
-
 const CONTRIBUTORS: Contributor[] = [
     {
         name: "Jeremy Andrews",

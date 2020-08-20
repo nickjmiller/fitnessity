@@ -9,7 +9,6 @@ import ExerciseList from "./ExerciseList";
 
 Modal.setAppElement("#root");
 
-
 export default () => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const { theme } = useThemeUI();
