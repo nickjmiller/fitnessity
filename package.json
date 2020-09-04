@@ -24,6 +24,8 @@
     "@types/rebass": "^4.0.6",
     "@types/rebass__forms": "^4.0.2",
     "@types/theme-ui": "^0.3.2",
+    "aws-amplify": "^3.1.1",
+    "aws-amplify-react": "^4.2.2",
     "emotion-theming": "^10.0.27",
     "memoize-one": "^5.1.1",
     "react": "^16.9.0",

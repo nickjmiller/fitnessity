@@ -1,0 +1,5 @@
+{
+    "tableName": "fitnessityUsers",
+    "partitionKeyName": "user",
+    "partitionKeyType": "S"
+}

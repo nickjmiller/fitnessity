@@ -1,0 +1,40 @@
+{
+    "paths": [
+        {
+            "name": "/users",
+            "lambdaFunction": "fitnessityApiLambda",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH"
+                ]
+            }
+        }
+    ],
+    "resourceName": "fitnessityApi",
+    "apiName": "fitnessityApi",
+    "functionArns": [
+        {
+            "lambdaFunction": "fitnessityApiLambda"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-fitnessity-dev-114113-authRole",
+        "unAuthRoleName": "amplify-fitnessity-dev-114113-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "fitnessityApiLambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

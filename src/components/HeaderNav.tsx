@@ -1,82 +1,90 @@
 /** @jsx jsx */
 import { Link } from "@reach/router";
 import { jsx } from "theme-ui";
-import { Flex, Button } from "rebass";
-import ExerciseListModal from "./ExerciseListModal";
+import { Flex, Button, Box } from "rebass";
+import { useSelector } from "react-redux";
+import { RootState } from "src/app/rootReducer";
+import LeaderboardModal from "./LeaderboardModal";
 
-export default () => (
-    <header
-        sx={{
-            display: "grid",
-            maxWidth: 768,
-            maxHeight: "25vh",
-            mx: "auto",
-            px: 3,
-            py: 3,
-            flexShrink: 0,
-            gridAutoFlow: "row",
-            gridTemplateColumns: [
-                "repeat(2, 1fr)",
-                "repeat(3, 1fr)",
-            ],
-            variant: "styles.header",
-        }}
-    >
-        <Flex
-            alignItems="center"
-            justifyContent="center"
+export default () => {
+    const { user } = useSelector((state: RootState) => state.user);
+    return (
+        <header
             sx={{
-                gridColumnStart: [1, 2],
-                gridColumnEnd: [3, 3],
-                order: [0, 1],
+                display: "grid",
+                maxWidth: 768,
+                maxHeight: "25vh",
+                mx: "auto",
+                px: 3,
+                py: 3,
+                flexShrink: 0,
+                gridAutoFlow: "row",
+                gridTemplateColumns: [
+                    "repeat(2, 1fr)",
+                    "repeat(3, 1fr)",
+                ],
+                variant: "styles.header",
             }}
         >
-            <Link to="/" title="Home">
-                <img
-                    height="60px"
-                    alt="UI Logo"
-                    src="/logo.png"
-                />
-                <span
-                    sx={{
-                        position: "absolute",
-                        width: 1,
-                        height: 1,
-                        overflow: "hidden",
-                        top: -9999,
-                    }}
+            <Flex
+                alignItems="center"
+                justifyContent="center"
+                sx={{
+                    gridColumnStart: [1, 2],
+                    gridColumnEnd: [3, 3],
+                    order: [0, 1],
+                }}
+            >
+                <Link to="/" title="Home">
+                    <img
+                        height="60px"
+                        alt="UI Logo"
+                        src="/logo.png"
+                    />
+                    <span
+                        sx={{
+                            position: "absolute",
+                            width: 1,
+                            height: 1,
+                            overflow: "hidden",
+                            top: -9999,
+                        }}
+                    >
+                        Home
+                    </span>
+                </Link>
+            </Flex>
+            <div
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                }}
+            >
+                <LeaderboardModal />
+                <Box>
+                    Hi {user}!
+                </Box>
+            </div>
+            <div
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-end",
+                    order: 2,
+                }}
+            >
+                <Link
+                    to="/exercises"
                 >
-                    Home
-                </span>
-            </Link>
-        </Flex>
-        <div
-            sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-start",
-            }}
-        >
-            <ExerciseListModal />
-        </div>
-        <div
-            sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-                order: 2,
-            }}
-        >
-            <Link
-                to="/exercises"
-            >
-                <Button variant="primary" mr={2}>Exercises</Button>
-            </Link>
-            <Link
-                to="/about"
-            >
-                <Button variant="primary" mr={2}>About</Button>
-            </Link>
-        </div>
-    </header>
-);
+                    <Button variant="primary" mr={2}>Exercises</Button>
+                </Link>
+                <Link
+                    to="/about"
+                >
+                    <Button variant="primary" mr={2}>About</Button>
+                </Link>
+            </div>
+        </header>
+    );
+};

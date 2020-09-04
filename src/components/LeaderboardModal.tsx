@@ -5,7 +5,7 @@ import {
 } from "rebass";
 import { useThemeUI } from "theme-ui";
 import { alpha, shade, darken } from "@theme-ui/color";
-import ExerciseList from "./ExerciseList";
+import Leaderboard from "./Leaderboard";
 
 Modal.setAppElement("#root");
 
@@ -46,7 +46,7 @@ export default () => {
                 shouldCloseOnOverlayClick
                 onRequestClose={closeModal}
             >
-                <ExerciseList onClose={closeModal} />
+                <Leaderboard />
             </Modal>
         </Box>
     );

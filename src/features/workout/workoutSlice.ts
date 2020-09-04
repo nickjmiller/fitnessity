@@ -55,7 +55,6 @@ export const WORKOUT_PLANS: { [key: string]: WorkoutGroup[] } = {
     Lower: ["Lower", "Lower", "Lower", "Lower", "Core"],
 };
 
-
 const workoutSlice = createSlice({
     name: "workout",
     initialState,

@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-fitnessity-dev-114113-authRole",
+            "UnauthRoleArn": "arn:aws:iam::082816535244:role/amplify-fitnessity-dev-114113-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::082816535244:role/amplify-fitnessity-dev-114113-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-fitnessity-dev-114113-deployment",
+            "UnauthRoleName": "amplify-fitnessity-dev-114113-unauthRole",
+            "StackName": "amplify-fitnessity-dev-114113",
+            "StackId": "arn:aws:cloudformation:us-east-1:082816535244:stack/amplify-fitnessity-dev-114113/35040df0-eede-11ea-aa1b-127e1ad2bd25",
+            "AmplifyAppId": "d1am09ikd1r52"
+        },
+        "categories": {
+            "auth": {
+                "cognito75aa9f5a": {}
+            }
+        }
+    }
+}
