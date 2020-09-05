@@ -31,8 +31,8 @@ const API_NAME = "fitnessityApi";
 
 const currentDate = new Date().toISOString().split("T")[0];
 
-const getAndRecordUser = async (username?: string) => {
-    const user = username || await Auth.currentAuthenticatedUser({ bypassCache: true });
+const getAndRecordUser = async (data?: string) => {
+    const user = data || await Auth.currentAuthenticatedUser();
     if (typeof document !== "undefined" && localStorage && (localStorage.lastLogin !== currentDate)) {
         localStorage.lastLogin = currentDate;
         const response = await API.get(API_NAME, `/users/${user.username}`, { headers: {} });
@@ -57,7 +57,7 @@ const App = () => {
             switch (event) {
                 case "signIn":
                 case "cognitoHostedUI":
-                    getAndRecordUser(data.username);
+                    getAndRecordUser(data);
                     dispatch(setUser(data.username));
                     break;
                 case "signOut":
