@@ -51,8 +51,8 @@ addPrefetchExcludes(["dynamic"]);
 
 const App = () => {
     const dispatch = useDispatch();
+    getAndRecordUser().then((user) => dispatch(setUser(user)));
     useEffect(() => {
-        getAndRecordUser().then((user) => dispatch(setUser(user)));
         Hub.listen("auth", ({ payload: { event } }) => {
             switch (event) {
                 case "signIn":
