@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { Link } from "@reach/router";
 import { jsx } from "theme-ui";
-import { Flex, Button, Box } from "rebass";
+import { Flex, Button } from "rebass";
+import { Auth } from "aws-amplify";
 import { useSelector } from "react-redux";
 import { RootState } from "src/app/rootReducer";
 import LeaderboardModal from "./LeaderboardModal";
@@ -13,10 +14,9 @@ export default () => {
             sx={{
                 display: "grid",
                 maxWidth: 768,
-                maxHeight: "25vh",
+                minWidth: "50vw",
                 mx: "auto",
-                px: 3,
-                py: 3,
+                pt: 2,
                 flexShrink: 0,
                 gridAutoFlow: "row",
                 gridTemplateColumns: [
@@ -62,9 +62,11 @@ export default () => {
                 }}
             >
                 <LeaderboardModal />
-                <Box>
-                    Hi {user}!
-                </Box>
+                <Link
+                    to="/exercises"
+                >
+                    <Button variant="primary">Exercises</Button>
+                </Link>
             </div>
             <div
                 sx={{
@@ -75,15 +77,12 @@ export default () => {
                 }}
             >
                 <Link
-                    to="/exercises"
-                >
-                    <Button variant="primary" mr={2}>Exercises</Button>
-                </Link>
-                <Link
                     to="/about"
                 >
                     <Button variant="primary" mr={2}>About</Button>
                 </Link>
+                {user ? <Button onClick={() => Auth.signOut()}>Sign out</Button>
+                    : <Button onClick={() => Auth.federatedSignIn()}>Sign in</Button>}
             </div>
         </header>
     );

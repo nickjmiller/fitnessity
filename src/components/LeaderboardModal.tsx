@@ -36,7 +36,7 @@ export default () => {
     }
     return (
         <Box>
-            <Button ml={2} onClick={openModal}>
+            <Button onClick={openModal}>
                 Leaderboard
             </Button>
             <Modal

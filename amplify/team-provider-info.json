@@ -13,7 +13,9 @@
         },
         "categories": {
             "auth": {
-                "cognito75aa9f5a": {}
+                "cognito75aa9f5a": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"486231578337-lbm60q8r7pfj5dj1dudn19d6gtpr4mbj.apps.googleusercontent.com\",\"client_secret\":\"ND6lRXsa0h5QzJ3AceTtJAET\"}]"
+                }
             }
         }
     }

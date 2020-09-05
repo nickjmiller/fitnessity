@@ -36,7 +36,7 @@ module.exports = {
         "no-plusplus": "off",
         semi: ["error", "always"],
         quotes: ["error", "double"],
-        indent: ["error", 4],
+        indent: ["error", 4, { SwitchCase: 1 }],
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": [
             "error"

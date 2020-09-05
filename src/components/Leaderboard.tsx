@@ -26,13 +26,14 @@ export default () => {
                 <Text fontWeight="bold" fontSize={[14, 17, 20]}>Leaderboard</Text>
                 <Button
                     variant="secondary"
-                    disabled={loading}
+                    disabled={loading || !user}
                     onClick={
                         () => getCurrentLeaderboard(dispatch, setLoading)
                     }
                 >{loading ? "Loading" : "Refresh"}
                 </Button>
             </Flex>
+            {user ? null : <Text>You need to be logged in to view the leaderboard.</Text>}
             <Flex flexDirection="row">
                 <Text
                     p={1}

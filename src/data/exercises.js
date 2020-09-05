@@ -545,7 +545,7 @@ const EXERCISES = [
     },
     {
         videoSrc: "https://thumbs.gfycat.com/ObviousHighIlladopsis-mobile.mp4",
-        title: "Single Leg Toe Touches With Assit",
+        title: "Single Leg Toe Touches With Assist",
         description: "While laying on back, lift one leg into air and use arms to climb leg  ultimately reaching for toe and performing crunch.",
         alternate: true,
         muscles: ["Transverse Abdominis", "Internal Oblique", "External Oblique", "Rectus Abdominis"],

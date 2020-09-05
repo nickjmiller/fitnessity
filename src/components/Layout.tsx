@@ -6,11 +6,8 @@ import HeaderNav from "components/HeaderNav";
 import {
     Box, Text, Flex,
 } from "rebass";
-import { Auth } from "aws-amplify";
-import { useDispatch } from "react-redux";
 import BurgerMenu from "./BurgerMenu";
 import SidebarContent from "./SidebarContent";
-import { setUser } from "../features/user/userSlice";
 
 const styles = {
     bmBurgerButton: {
@@ -73,10 +70,6 @@ export default () => {
                 sidebarDocked = mql.matches;
             });
         }
-    });
-    const dispatch = useDispatch();
-    Auth.currentAuthenticatedUser().then((user) => {
-        dispatch(setUser(user.username));
     });
     return (
         <Flex flexDirection="column" overflow="hidden" id="bdf" height="100vh">
