@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Amplify, { Auth, API, Hub } from "aws-amplify";
-import { withAuthenticator } from "aws-amplify-react";
 
 import { Root, addPrefetchExcludes } from "react-static";
 import { ThemeProvider } from "theme-ui";
@@ -77,8 +76,8 @@ const App = () => {
     );
 };
 
-export default withAuthenticator(() => (
+export default () => (
     <Provider store={store}>
         <App />
     </Provider>
-));
+);

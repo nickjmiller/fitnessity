@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Text, Flex } from "rebass";
 import { API } from "aws-amplify";
+import { withAuthenticator } from "aws-amplify-react";
 import { setLeaderboard, User } from "../features/user/userSlice";
 import { RootState } from "../app/rootReducer";
 
@@ -16,10 +17,13 @@ const getCurrentLeaderboard = async (dispatch: any, setLoading: any) => {
     setLoading(false);
 };
 
-export default () => {
+export default withAuthenticator(() => {
     const { user, leaderboard } = useSelector((state: RootState) => state.user);
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
+    useEffect(() => {
+        getCurrentLeaderboard(dispatch, setLoading);
+    }, []);
     return (
         <Flex flexDirection="column" minWidth={350} width="50vw">
             <Flex flexDirection="row" justifyContent="space-between">
@@ -81,4 +85,4 @@ export default () => {
             ))}
         </Flex>
     );
-};
+});
