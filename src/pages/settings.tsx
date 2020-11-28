@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Flex, Heading } from "rebass";
-import DarkModeToggle from "components/DarkModeToggle";
-import WorkoutSettings from "components/WorkoutSettings";
+import DarkModeToggle from "components/userSettings/DarkModeToggle";
+import WorkoutSettings from "components/userSettings/WorkoutSettings";
 import { Label, Select } from "@rebass/forms";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "src/app/rootReducer";
-import { WORKOUT_PLANS, setDefaultWorkout } from "../features/workout/workoutSlice";
+import { WORKOUT_PLANS, setDefaultWorkout } from "features/workout/workoutSlice";
 
 export default () => {
     const dispatch = useDispatch();
@@ -28,7 +28,12 @@ export default () => {
                         width="20em"
                     >
                         {Object.keys(WORKOUT_PLANS).map((key) => (
-                            <option key={key}>
+                            <option
+                                key={key}
+                                sx={{
+                                    color: "black",
+                                }}
+                            >
                                 {key}
                             </option>
                         ))}

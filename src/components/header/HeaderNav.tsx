@@ -5,7 +5,10 @@ import { Flex, Button } from "rebass";
 import { Auth } from "aws-amplify";
 import { useSelector } from "react-redux";
 import { RootState } from "src/app/rootReducer";
-import LeaderboardModal from "./LeaderboardModal";
+import ButtonModal from "./ButtonModal";
+import Leaderboard from "./modal/Leaderboard";
+import Welcome from "./modal/Welcome";
+import ButtonLink from "./ButtonLink";
 
 export default () => {
     const { user } = useSelector((state: RootState) => state.user);
@@ -14,7 +17,8 @@ export default () => {
             sx={{
                 display: "grid",
                 maxWidth: 768,
-                minWidth: "50vw",
+                width: "50vw",
+                minWidth: 250,
                 mx: "auto",
                 pt: 2,
                 flexShrink: 0,
@@ -58,31 +62,28 @@ export default () => {
                 sx={{
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "space-between",
+                    justifyContent: "space-evenly",
                 }}
             >
-                <LeaderboardModal />
-                <Link
-                    to="/exercises"
-                >
-                    <Button variant="primary">Exercises</Button>
-                </Link>
+                <ButtonModal View={Leaderboard} text="Stats" />
+                <ButtonLink href="/exercises" text="Exercises" />
             </div>
             <div
                 sx={{
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "flex-end",
+                    justifyContent: "space-evenly",
                     order: 2,
                 }}
             >
-                <Link
-                    to="/about"
-                >
-                    <Button variant="primary" mr={2}>About</Button>
-                </Link>
-                {user ? <Button onClick={() => Auth.signOut()}>Sign out</Button>
-                    : <Button onClick={() => Auth.federatedSignIn()}>Sign in</Button>}
+                <ButtonLink href="/about" text="About" />
+                {user
+                    ? (
+                        <Button onClick={() => Auth.signOut()} px={1} fontSize={[12, 14, 16]}>
+                            Sign out
+                        </Button>
+                    )
+                    : <ButtonModal View={Welcome} text="Sign In" />}
             </div>
         </header>
     );

@@ -41,6 +41,13 @@ const theme = {
             },
         },
     },
+    forms: {
+        select: {
+            "&:focus": {
+                backgroundColor: "background",
+            },
+        },
+    },
 };
 
 theme.colors.tertiary = theme.colors.secondary;

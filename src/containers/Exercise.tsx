@@ -6,7 +6,7 @@ import { Exercise } from "src/data/exercises";
 import WorkoutContainer from "components/workout/WorkoutContainer";
 import ExerciseInfo from "components/workout/ExerciseInfo";
 import { useDispatch } from "react-redux";
-import { setSingleExercise } from "../features/workout/workoutSlice";
+import { setSingleExercise } from "features/workout/workoutSlice";
 import { MUSCLE_MAP, WORKOUT_MAP } from "../data/MuscleMap";
 
 export default () => {

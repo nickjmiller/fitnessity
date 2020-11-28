@@ -5,11 +5,10 @@ import {
 } from "rebass";
 import { useThemeUI } from "theme-ui";
 import { alpha, shade, darken } from "@theme-ui/color";
-import Leaderboard from "./Leaderboard";
 
 Modal.setAppElement("#root");
 
-export default () => {
+export default ({ text, View }: { text: string, View: typeof React.Component}) => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const { theme } = useThemeUI();
     const backgroundColor = darken("background", 0)(theme);
@@ -36,8 +35,8 @@ export default () => {
     }
     return (
         <Box>
-            <Button onClick={openModal}>
-                Leaderboard
+            <Button onClick={openModal} px={1} fontSize={[12, 14, 16]}>
+                {text}
             </Button>
             <Modal
                 isOpen={modalIsOpen}
@@ -46,7 +45,7 @@ export default () => {
                 shouldCloseOnOverlayClick
                 onRequestClose={closeModal}
             >
-                <Leaderboard />
+                <View />
             </Modal>
         </Box>
     );

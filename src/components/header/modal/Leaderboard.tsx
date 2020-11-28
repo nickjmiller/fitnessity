@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button, Text, Flex } from "rebass";
 import { API } from "aws-amplify";
 import { withAuthenticator } from "aws-amplify-react";
-import { setLeaderboard, User } from "../features/user/userSlice";
-import { RootState } from "../app/rootReducer";
+import { setLeaderboard, User } from "features/user/userSlice";
+import { RootState } from "src/app/rootReducer";
 
 const getCurrentLeaderboard = async (dispatch: any, setLoading: any) => {
     setLoading(true);

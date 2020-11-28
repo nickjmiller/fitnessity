@@ -3,7 +3,7 @@ import { Box } from "rebass";
 import { Slider, Label } from "@rebass/forms";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "src/app/rootReducer";
-import { setDefaultSets, setDefaultSetTime, setDefaultRestTime } from "../features/workout/workoutSlice";
+import { setDefaultSets, setDefaultSetTime, setDefaultRestTime } from "features/workout/workoutSlice";
 
 export default () => {
     const {

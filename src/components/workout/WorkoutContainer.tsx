@@ -5,14 +5,14 @@ import {
 } from "rebass";
 import Timer, { TimerControls } from "react-compound-timer";
 import { useDispatch, useSelector } from "react-redux";
-import WorkoutSettings from "components/WorkoutSettings";
+import WorkoutSettings from "components/userSettings/WorkoutSettings";
+import {
+    incrementIndex, resetIndex, startDefaultWorkout,
+} from "features/workout/workoutSlice";
+import { RootState } from "src/app/rootReducer";
 import ExerciseInfo from "./ExerciseInfo";
 // eslint-disable-next-line
 import { Exercise } from "../../data/exercises";
-import {
-    incrementIndex, resetIndex, startDefaultWorkout,
-} from "../../features/workout/workoutSlice";
-import { RootState } from "../../app/rootReducer";
 
 let UIfx: any;
 

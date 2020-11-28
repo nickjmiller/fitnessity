@@ -4,7 +4,7 @@ import {
     Button, Flex, Text, Box,
 } from "rebass";
 import { useDispatch } from "react-redux";
-import { setWorkout } from "../features/workout/workoutSlice";
+import { setWorkout } from "features/workout/workoutSlice";
 
 export default () => {
     const dispatch = useDispatch();
